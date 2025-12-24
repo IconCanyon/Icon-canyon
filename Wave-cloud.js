@@ -245,14 +245,15 @@
 })();
 
 
-// الإستعمال
-// 
-// Wave-cloud لإظهار الموجة من مكان النقر
-// 
-// Wave-center  لإظهار الموجه من المنتصف
-// 
-// Wave-all  لإظهار الموجة من مكان النقر لعدة عناصر كلاس أضف للديف الرئيسي
-// 
-// Wave-all-center اضف للديف الرئيسي لإظهار الموجة من المنتصف لعدة عناصر كلاس
+// Usage
+//
+// Wave-cloud to display the wave from the click location
+//
+// Wave-center to display the wave from the center
+//
+// Wave-all to display the wave from the click location for multiple class elements. Add to the main dev
+//
+// Wave-all-center to the main dev to display the wave from the center for multiple class elements
 // -------------------------------------------
-// يدعم الكود هذه العناصر <a>  <button>  <label>  وغيرها بشرط 
+// The code supports these elements: <a> <button> <label> and others, provided that
+
