@@ -1589,8 +1589,8 @@ const styles = `
         fill: #007aff !important;
         color: #007aff !important;
         border: 1px solid #ccc !important;
-        border-radius: 5px !important;
-        padding: 5px 8px !important;
+        border-radius: 25px !important;
+        padding: 5px 5px !important;
         cursor: pointer !important;
         font-size: 20px !important;
         line-height: 1 !important;
