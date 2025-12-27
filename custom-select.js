@@ -106,7 +106,7 @@
     .custom-option {
       padding: 14px 14px !important;
       cursor: pointer !important;
-      display: flex !important;
+      display: flex;
       align-items: center !important;
     }
 
@@ -128,6 +128,25 @@
       border-radius: 5px !important;
       height: 25px !important;
       background-color: #006fff !important;
+    }
+    
+
+    .custom-options ::-webkit-scrollbar {
+      width: 8px !important;
+      height: 8px !important;
+    }
+
+    .custom-options ::-webkit-scrollbar-track {
+      background: #f1f1f1 !important;
+    }
+
+    .custom-options ::-webkit-scrollbar-thumb {
+      background: #bdc3c7 !important;
+      border-radius: 4px !important;
+    }
+
+    .custom-options ::-webkit-scrollbar-thumb:hover {
+      background: #95a5a6 !important;
     }
   `;
   document.head.appendChild(style);
