@@ -1481,7 +1481,7 @@
         "🇳🇺": { ar: "نيوي", en: "Niue" },
         "🇳🇫": { ar: "جزيرة نورفولك", en: "Norfolk Island" },
         "🇰🇵": { ar: "كوريا الشمالية", en: "North Korea" },
-        "🇲🇵": { ar: "جزر ماريانا الشمالية", en: "Northern Mariana Islands" },
+        "🇲🇵": { ar: "جزر الماريانا الشمالية", en: "Northern Mariana Islands" },
         "🇳🇴": { ar: "النرويج", en: "Norway" },
         "🇴🇲": { ar: "عُمان", en: "Oman" },
         "🇵🇰": { ar: "باكستان", en: "Pakistan" },
@@ -1594,7 +1594,7 @@ const styles = `
         cursor: pointer !important;
         font-size: 20px !important;
         line-height: 1 !important;
-        z-index: 1000 !important;
+        z-index: 100 !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -1646,6 +1646,10 @@ const styles = `
         border: 1px solid #ddd !important;
         border-radius: 5px !important;
         font-size: 14px !important;
+    }
+    .emoji-picker-search.loading {
+        opacity: 0.5 !important;
+        pointer-events: none !important;
     }
     .emoji-picker-categories {
         display: flex !important;
@@ -1744,6 +1748,7 @@ let picker = null;
 let activeInput = null;
 let activeButton = null;
 let currentCategory = null; // تخزين الفئة الحالية
+let isCategoryLoading = false; // متغير لتتبع حالة التحميل
 const isArabic = navigator.language.includes('ar');
 
 // --- 4. دوال مساعدة (Helper Functions) ---
@@ -1848,7 +1853,7 @@ function createPicker() {
 }
 
 /**
- * إنشاء قسم الإيموجي ديناميكيًا
+ * إنشاء قسم الإيموجي ديناميكيًا مع التحميل التدريجي
  */
 function createEmojiSection(categoryName) {
     const content = picker.querySelector('.emoji-picker-content');
@@ -1858,19 +1863,45 @@ function createEmojiSection(categoryName) {
     section.className = 'emoji-picker-section';
     section.setAttribute('data-category', categoryName);
     
-    // إضافة الإيموجي للقسم
-    let emojisHTML = '';
-    emojiData[categoryName].forEach(emojiChar => {
+    // إضافة الإيموجي للقسم بشكل تدريجي
+    const searchInput = picker.querySelector('.emoji-picker-search');
+    searchInput.classList.add('loading'); // تعطيل البحث أثناء التحميل
+    
+    let index = 0;
+    const emojis = emojiData[categoryName];
+    
+    function addNextEmoji() {
+        if (index >= emojis.length) {
+            // تم تحميل جميع الإيموجي
+            searchInput.classList.remove('loading'); // تمكين البحث بعد التحميل
+            isCategoryLoading = false;
+            return;
+        }
+        
+        const emojiChar = emojis[index];
         const emojiName = getEmojiName(emojiChar);
-        emojisHTML += `<span class="emoji-picker-emoji Wave-center" title="${emojiName}">${emojiChar}</span>`;
-    });
+        
+        // إنشاء عنصر الإيموجي
+        const emojiElement = document.createElement('span');
+        emojiElement.className = 'emoji-picker-emoji Wave-center';
+        emojiElement.title = emojiName;
+        emojiElement.textContent = emojiChar;
+        
+        // إضافة مستمع حدث للنقر
+        emojiElement.addEventListener('click', () => insertEmoji(emojiChar));
+        
+        // إضافة الإيموجي للقسم
+        section.appendChild(emojiElement);
+        
+        index++;
+        
+        // جدولة الإيموجي التالي
+        setTimeout(addNextEmoji, 2); // 2 ملي ثانية بين كل إيموجي
+    }
     
-    section.innerHTML = emojisHTML;
-    
-    // إضافة مستمعي الأحداث للإيموجي
-    section.querySelectorAll('.emoji-picker-emoji').forEach(span => {
-        span.addEventListener('click', () => insertEmoji(span.textContent));
-    });
+    // بدء تحميل الإيموجي
+    isCategoryLoading = true;
+    addNextEmoji();
     
     return section;
 }
@@ -1953,16 +1984,17 @@ function getEmojiLength(text) {
  * التحقق مما إذا كان النص هو إيموجي
  */
 function isEmoji(text) {
-    const regex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c\ude01-\ude02|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
+    const regex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udde1-\uddff]|[\ud83c\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
     return regex.test(text);
 }
 
 /**
  * عرض قسم معين من الإيموجي مع التحميل الديناميكي
  */
-function showCategory(categoryName) {
-    // إذا كانت هذه هي الفئة الحالية، لا تفعل شيئًا
-    if (currentCategory === categoryName) return;
+function showCategory(categoryName, forceReload = false) {
+    // التعديل: إضافة معلمة forceReload للسماح بإعادة تحميل الفئة عند مسح البحث
+    // إذا كانت هذه هي الفئة الحالية ولم يتم فرض إعادة التحميل، لا تفعل شيئًا
+    if (currentCategory === categoryName && !forceReload) return;
     
     // تحديث أزرار الفئات
     document.querySelectorAll('.emoji-picker-category').forEach(btn => {
@@ -1995,12 +2027,18 @@ function showCategory(categoryName) {
  * التعامل مع البحث في الإيموجي
  */
 function handleSearch(e) {
+    // منع البحث أثناء تحميل الفئة
+    if (isCategoryLoading) {
+        e.preventDefault();
+        return;
+    }
+    
     const searchTerm = e.target.value.toLowerCase();
     
-    // إذا كان البحث فارغًا، أظهر الفئة الحالية
+    // إذا كان البحث فارغًا، أظهر الفئة الحالية مع فرض إعادة التحميل
     if (!searchTerm) {
         if (currentCategory) {
-            showCategory(currentCategory);
+            showCategory(currentCategory, true); // التعديل: فرض إعادة تحميل الفئة
         }
         return;
     }
