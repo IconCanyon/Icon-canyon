@@ -343,9 +343,6 @@
         "🪗": { ar: "أكورديون", en: "Accordion" },
         "🎸": { ar: "جيتار", en: "Guitar" },
         "🎹": { ar: "بيانو", en: "Musical Keyboard" },
-        "🎺": { ar: "بوق", en: "Trumpet" },
-        "🎻": { ar: "كمان", en: "Violin" },
-        "🪕": { ar: "بانجو", en: "Banjo" },
         "🥁": { ar: "طبول", en: "Drum" },
         "🪘": { ar: "طبول إفريقية", en: "Long Drum" },
         "🪇": { ar: "ماراكاس", en: "Maracas" },
@@ -1549,27 +1546,29 @@
         "🇹🇨": { ar: "جزر فيرجن الأمريكية", en: "U.S. Virgin Islands" },
         "🇻🇮": { ar: "توفالو", en: "Tuvalu" },
         "🇹🇻": { ar: "أوغندا", en: "Uganda" },
-        "🇺🇬": { ar: "أوكرانيا", en: "Ukraine" },
-        "🇺🇦": { ar: "الإمارات العربية المتحدة", en: "United Arab Emirates" },
-        "🇦🇪": { ar: "المملكة المتحدة", en: "United Kingdom" },
-        "🇬🇧": { ar: "إنجلترا", en: "England" },
-        "🏴󠁧󠁢󠁥󠁮󠁧󠁿": { ar: "اسكتلندا", en: "Scotland" },
-        "🏴󠁧󠁢󠁳󠁣󠁴󠁿": { ar: "ويلز", en: "Wales" },
-        "🏴󠁧󠁢󠁷󠁬󠁳󠁿": { ar: "الولايات المتحدة", en: "United States" },
-        "🇺🇸": { ar: "أوروغواي", en: "Uruguay" },
-        "🇺🇾": { ar: "أوزبكستان", en: "Uzbekistan" },
-        "🇺🇿": { ar: "فانواتو", en: "Vanuatu" },
-        "🇻🇺": { ar: "الفاتيكان", en: "Vatican City" },
-        "🇻🇦": { ar: "فنزويلا", en: "Venezuela" },
-        "🇻🇪": { ar: "فيتنام", en: "Vietnam" },
-        "🇻🇳": { ar: "واليس وفوتونا", en: "Wallis & Futuna" },
+        "🇺🇬": { ar: "أوغندا", en: "Uganda" },
+        "🇺🇦": { ar: "أوكرانيا", en: "Ukraine" },
+        "🇦🇪": { ar: "الإمارات العربية المتحدة", en: "United Arab Emirates" },
+        "🇬🇧": { ar: "المملكة المتحدة", en: "United Kingdom" },
+        "🏴󠁧󠁢󠁥󠁮󠁧󠁿": { ar: "إنجلترا", en: "England" },
+        "🏴󠁧󠁢󠁳󠁣󠁴󠁿": { ar: "اسكتلندا", en: "Scotland" },
+        "🏴󠁧󠁢󠁷󠁬󠁳󠁿": { ar: "ويلز", en: "Wales" },
+        "🇺🇸": { ar: "الولايات المتحدة", en: "United States" },
+        "🇺🇾": { ar: "أوروغواي", en: "Uruguay" },
+        "🇺🇿": { ar: "أوزبكستان", en: "Uzbekistan" },
+        "🇻🇺": { ar: "فانواتو", en: "Vanuatu" },
+        "🇻🇦": { ar: "الفاتيكان", en: "Vatican City" },
+        "🇻🇪": { ar: "فنزويلا", en: "Venezuela" },
+        "🇻🇳": { ar: "فيتنام", en: "Vietnam" },
+        "🇼🇫": { ar: "واليس وفوتونا", en: "Wallis & Futuna" },
         "🇼🇫": { ar: "الصحراء الغربية", en: "Western Sahara" },
         "🇪🇭": { ar: "اليمن", en: "Yemen" },
-        "🇾🇪": { ar: "زامبيا", en: "Zambia" },
-        "🇿🇲": { ar: "زيمبابوي", en: "Zimbabwe" },
+        "🇾🇪": { ar: "اليمن", en: "Yemen" },
+        "🇿🇲": { ar: "زامبيا", en: "Zambia" },
+        "🇿🇼": { ar: "زيمبابوي", en: "Zimbabwe" },
         "🇿🇼": { ar: "جزيرة أسينشين", en: "Ascension Island" },
-        "🇦🇨": { ar: "جزيرة بوفيه", en: "Bouvet Island" },
-        "🇧🇻": { ar: "جزيرة كليبرتون", en: "Clipperton Island" },
+        "🇦🇨": { ar: "جزيرة أسينشين", en: "Ascension Island" },
+        "🇧🇻": { ar: "جزيرة بوفيه", en: "Bouvet Island" },
         "🇨🇵": { ar: "يوتا", en: "Ceuta & Melilla" },
         "🇪🇦": { ar: "دييغو غارسيا", en: "Diego Garcia" },
         "🇩🇬": { ar: "جزيرة هيرد وجزر ماكدونالد", en: "Heard & McDonald Islands" },
@@ -1580,877 +1579,1096 @@
         "🇺🇲": { ar: "الأمم المتحدة", en: "United Nations" }
     };
 
-// --- 2. إضافة أنماط CSS (Adding CSS Styles) ---
-// يتم حقن أنماط CSS مباشرة في الصفحة لتجنب الحاجة لملف منفصل.
-const styles = `
-    .emoji-picker-btn {
-        position: fixed !important;
-        background: #fff !important;
-        fill: #393d42ff !important;
-        color: #393d42ff !important;
-        border: 1px solid #ccc !important;
-        border-radius: 25px !important;
-        padding: 5px 5px !important;
-        cursor: pointer !important;
-        font-size: 20px !important;
-        line-height: 1 !important;
-        z-index: 1000 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
-        pointer-events: auto !important;
-        transition: background 0.2s ease;
-    }
-    .emoji-picker-btn:hover {
-        background: #ebebebff !important;
-    }
-    .emoji-picker-btn svg {
-        height: 24px !important;
-        display: flex !important;
-    }
-    .emoji-picker-btn:hover {
-        fill: #007aff !important;
-        color: #007aff !important;
-    }
-    .emoji-picker-container {
-        position: absolute !important;
-        background: #fff !important;
-        overflow: hidden !important;
-        border: 1px solid #ccc !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-        z-index: 10000 !important;
-        width: 350px !important;
-        max-height: 427px !important;
-        display: none;
-        flex-direction: column !important;
-        font-size: 14px !important;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-    }
-    .emoji-picker-container::after {
-        position: absolute !important;
-        z-index: 50 !important;
-        content: '1,543 different emojis' !important;
-        bottom: -41px !important;
-        padding: 10px !important;
-        font-size: 16px !important;
-        color: #576571 !important;
-        opacity: .5 !important;
-        text-shadow: 0px -41px 0px !important;
-    }
-    .emoji-picker-search {
-        margin: 10px !important;
-        padding: 8px !important;
-        outline-color: #007aff !important;
-        border: 1px solid #ddd !important;
-        border-radius: 5px !important;
-        font-size: 14px !important;
-    }
-    .emoji-picker-search.loading {
-        opacity: 0.5 !important;
-        pointer-events: none !important;
-    }
-    .emoji-picker-categories {
-        display: flex !important;
-        border-bottom: 1px solid #eee !important;
-        background: #f8f8f8 !important;
-        overflow-x: auto !important;
-        scrollbar-width: none !important;
-        cursor: grab !important; /* تمت إضافة هذا السطر */
-        user-select: none !important; /* منع تحديد النص أثناء السحب */
-    }
-    .emoji-picker-categories::-webkit-scrollbar {
-        display: none !important;
-    }
-    .emoji-picker-category {
-        color: #00000071 !important;
-        padding: 8px 12px !important;
-        cursor: pointer !important;
-        white-space: nowrap !important;
-        font-size: 18px !important;
-        transition: all 0.2s ease !important;
-    }
-    .emoji-picker-category:hover {
-        color: #000000c5 !important;
-    }
-    .emoji-picker-category.active {
-        color: #000 !important;
-        box-shadow: 0px -2px 0px #007aff inset !important;
-        background: #fff !important;
-    }
-    .emoji-picker-content {
-        flex-grow: 1 !important;
-        overflow-y: auto !important;
-        padding: 10px !important;
-        height: 312px !important;
-        scrollbar-width: thin !important;
-        scrollbar-color: #ccc #f0f0f0 !important;
-    }
-    .emoji-picker-content::-webkit-scrollbar {
-        width: 6px !important;
-    }
-    .emoji-picker-content::-webkit-scrollbar-track {
-        background: #f0f0f0 !important;
-    }
-    .emoji-picker-content::-webkit-scrollbar-thumb {
-        background-color: #ccc !important;
-        border-radius: 3px !important;
-    }
-    .emoji-picker-section {
-        display: none !important;
-        padding-bottom: 30px !important;
-    }
-    .emoji-picker-section.active {
-        display: block !important;
-    }
-    .emoji-picker-emoji {
-        line-height: 1.9999999 !important;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 45px !important;
-        height: 45px !important;
-        cursor: pointer !important;
-        font-size: 24px !important;
-        border-radius: 25px !important;
-        transition: background 0.2s ease !important;
-    }
-    .emoji-picker-emoji:hover {
-        background: #eee !important;
-    }
-    .backspace {
-        background: white !important;
-        position: sticky !important;
-        cursor: pointer !important;
-        z-index: 5 !important; 
-        right: 0 !important;
-        padding: 0 9px !important;
-        display: flex !important;
-        align-items: center !important;
-        border-left: solid 1px #eeeeee !important;
-    }
-    .backspace svg {
-        width: 24px !important;
-        height: 24px !important;
-    }
-    .backspace:active svg {
-        opacity: .5 !important;
-    }
-`;
-const styleSheet = document.createElement("style");
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
-
-// --- 3. المتغيرات العامة (Global Variables) ---
-let picker = null;
-let activeInput = null;
-let activeButton = null;
-let currentCategory = null; // تخزين الفئة الحالية
-let isCategoryLoading = false; // متغير لتتبع حالة التحميل
-const isArabic = navigator.language.includes('ar');
-
-// --- 4. دوال مساعدة (Helper Functions) ---
-
-/**
- * الحصول على اسم الإيموجي حسب اللغة
- */
-function getEmojiName(emoji) {
-    if (emojiNames[emoji]) {
-        return isArabic ? emojiNames[emoji].ar : emojiNames[emoji].en;
-    }
-    return emoji; // للبحث، سنستخدم الرمز نفسه إذا لم يكن هناك اسم
-}
-
-/**
- * إنشاء منتقي الإيموجي وإضافته إلى الصفحة مرة واحدة فقط
- */
-function createPicker() {
-    if (document.getElementById('emoji-picker-container')) return;
-
-    picker = document.createElement('div');
-    picker.id = 'emoji-picker-container';
-    picker.className = 'emoji-picker-container';
-    picker.setAttribute('data-emoji-picker', 'true');
-
-    // بناء محتوى المنتقي باستخدام innerHTML
-    let categoriesHTML = '';
-    let firstCategoryName = null;
-
-    for (const categoryName in emojiData) {
-        if (!firstCategoryName) firstCategoryName = categoryName;
-
-        // زر الفئة
-        categoriesHTML += `<div class="emoji-picker-category Wave-cloud" data-category="${categoryName}">
-            ${categoryName.split(' ')[0]}
-        </div>`;
-    }
-
-    picker.innerHTML = `
-        <input type="text" class="emoji-picker-search" placeholder="${isArabic ? 'ابحث عن إيموجي...' : 'Search for emoji...'}" data-emoji-search="true">
-        <div class="emoji-picker-categories">
-            <div style="display: flex;">${categoriesHTML}</div>
-            <div class="backspace" title="Delete">
-                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M135.19 390.14a28.79 28.79 0 0021.68 9.86h246.26A29 29 0 00432 371.13V140.87A29 29 0 00403.13 112H156.87a28.84 28.84 0 00-21.67 9.84v0L46.33 256l88.86 134.11z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33"/></svg>
-            </div>
-        </div>
-        <div class="emoji-picker-content">
-            <!-- سيتم إضافة الأقسام ديناميكيًا -->
-        </div>
+    // --- 2. إضافة أنماط CSS (Adding CSS Styles) ---
+    // يتم حقن أنماط CSS مباشرة في الصفحة لتجنب الحاجة لملف منفصل.
+    const styles = `
+        .emoji-picker-btn {
+            position: fixed !important;
+            background: #fff !important;
+            fill: #393d42ff !important;
+            color: #393d42ff !important;
+            border: 1px solid #ccc !important;
+            border-radius: 25px !important;
+            padding: 5px 5px !important;
+            cursor: pointer !important;
+            font-size: 20px !important;
+            line-height: 1 !important;
+            z-index: 1000 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            display: block !important;
+            pointer-events: none !important;
+            transition: opacity 0.2s ease, visibility 0.2s ease, 0.2s ease;
+        }
+        .emoji-picker-btn.visible {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+        .emoji-picker-btn:hover {
+            background: #ebebebff !important;
+        }
+        .emoji-picker-btn svg {
+            height: 24px !important;
+            display: flex !important;
+        }
+        .emoji-picker-btn:hover {
+            fill: #007aff !important;
+            color: #007aff !important;
+        }
+        .emoji-picker-container {
+            position: absolute !important;
+            background: #fff !important;
+            overflow: hidden !important;
+            border: 1px solid #ccc !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            z-index: 10000 !important;
+            width: 350px !important;
+            max-height: 427px !important;
+            display: none;
+            flex-direction: column !important;
+            font-size: 14px !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        .emoji-picker-container::after {
+            position: absolute !important;
+            z-index: 50 !important;
+            content: '1,543 different emojis' !important;
+            bottom: -41px !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            color: #576571 !important;
+            opacity: .5 !important;
+            text-shadow: 0px -41px 0px !important;
+        }
+        .emoji-picker-search {
+            margin: 10px !important;
+            padding: 8px !important;
+            outline-color: #007aff !important;
+            border: 1px solid #ddd !important;
+            border-radius: 5px !important;
+            font-size: 14px !important;
+        }
+        .emoji-picker-search.loading {
+            opacity: 0.5 !important;
+            pointer-events: none !important;
+        }
+        .emoji-picker-categories {
+            display: flex !important;
+            border-bottom: 1px solid #eee !important;
+            background: #f8f8f8 !important;
+            overflow-x: auto !important;
+            scrollbar-width: none !important;
+            user-select: none !important; /* منع تحديد النص أثناء السحب */
+        }
+        .emoji-picker-categories::-webkit-scrollbar {
+            display: none !important;
+        }
+        .emoji-picker-category {
+            position: relative !important;
+            background: #0000 !important;
+            padding: 2px 12px !important;
+            cursor: pointer !important;
+            margin-left: 10px !important;
+            margin: 7.5px 0;
+            color: #00000052 !important;
+            border-radius: 25px !important;
+            white-space: nowrap !important;
+            font-size: 16px !important;
+            transition: all 0.2s ease !important;
+        }
+        .emoji-picker-category:hover {
+            color: #000000a2 !important;
+        }
+        .emoji-picker-category.active {
+            opacity: 1 !important;
+            color: #000 !important;
+            background: #fff !important;
+            box-shadow: 0px 1px 10px #2c3e5024 !important;
+        }
+        .emoji-picker-category.active::after {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translate(-50%) !important;
+            content: '' !important;
+            bottom: -7px !important;
+            height: 2px !important;
+            width: 50% !important;
+            border-radius: 5px !important;
+            background: #007aff !important;
+        }
+        .emoji-picker-content {
+            flex-grow: 1 !important;
+            overflow-y: auto !important;
+            padding: 10px !important;
+            height: 312px !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: #ccc #f0f0f0 !important;
+        }
+        .emoji-picker-content::-webkit-scrollbar {
+            width: 6px !important;
+        }
+        .emoji-picker-content::-webkit-scrollbar-track {
+            background: #f0f0f0 !important;
+        }
+        .emoji-picker-content::-webkit-scrollbar-thumb {
+            background-color: #ccc !important;
+            border-radius: 3px !important;
+        }
+        .emoji-picker-section {
+            display: none !important;
+            padding-bottom: 30px !important;
+        }
+        .emoji-picker-section.active {
+            display: block !important;
+        }
+        .emoji-picker-emoji {
+            line-height: 1.9999999 !important;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 45px !important;
+            height: 45px !important;
+            cursor: pointer !important;
+            font-size: 24px !important;
+            border-radius: 25px !important;
+            transition: background 0.2s ease !important;
+        }
+        .emoji-picker-emoji:hover {
+            background: #eee !important;
+        }
+        .backspace {
+            background: white !important;
+            position: sticky !important;
+            cursor: pointer !important;
+            z-index: 5 !important; 
+            right: 0 !important;
+            padding: 0 9px !important;
+            display: flex !important;
+            align-items: center !important;
+            border-left: solid 1px #eeeeee !important;
+        }
+        .backspace svg {
+            width: 24px !important;
+            height: 24px !important;
+        }
+        .backspace:active svg {
+            opacity: .5 !important;
+        }
+        .language-toggle {
+            position: absolute !important;
+            opacity: .5 !important;
+            top: 5px !important;
+            right: 5px !important;
+            display: flex !important;
+            align-items: center !important;
+            z-index: 10001 !important;
+            transition: 0.3s ease;
+        }
+        .language-toggle:hover {
+            opacity: 1 !important;
+        }
+        .language-toggle input[type="checkbox"] {
+            display: none !important;
+        }
+        .language-toggle label {
+            display: flex !important;
+            align-items: center !important;
+            cursor: pointer !important;
+            background: #f0f0f0 !important;
+            border-radius: 20px !important;
+            padding: 5px 10px !important;
+            font-size: 12px !important;
+            transition: background 0.3s ease !important;
+        }
+        .language-toggle label:hover {
+            background: #eeeeeeff !important;
+        }
+        .language-toggle label span {
+            margin: 0 5px !important;
+            transition: opacity 0.3s ease !important;
+        }
+        .language-toggle label span.active {
+            font-weight: bold !important;
+        }
+        .language-toggle label span:first-child {
+            opacity: 0.5 !important;
+        }
+        .language-toggle label span:last-child {
+            opacity: 0.5 !important;
+        }
+        .language-toggle input[type="checkbox"]:checked + label span:first-child {
+            opacity: 0.5 !important;
+        }
+        .language-toggle input[type="checkbox"]:checked + label span:last-child {
+            opacity: 1 !important;
+        }
+        .language-toggle input[type="checkbox"]:not(:checked) + label span:first-child {
+            opacity: 1 !important;
+        }
+        .language-toggle input[type="checkbox"]:not(:checked) + label span:last-child {
+            opacity: 0.5 !important;
+        }
     `;
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = styles;
+    document.head.appendChild(styleSheet);
 
-    document.body.appendChild(picker);
-
-    // --- بداية الكود المضاف للتمرير بالسحب ---
-    const categoriesContainer = picker.querySelector('.emoji-picker-categories');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    categoriesContainer.addEventListener('mousedown', (e) => {
-        isDown = true;
-        categoriesContainer.style.cursor = 'grabbing';
-        startX = e.pageX - categoriesContainer.offsetLeft;
-        scrollLeft = categoriesContainer.scrollLeft;
-        e.preventDefault(); // منع تحديد النص
-    });
-
-    categoriesContainer.addEventListener('mouseleave', () => {
-        isDown = false;
-        categoriesContainer.style.cursor = 'grab';
-    });
-
-    categoriesContainer.addEventListener('mouseup', () => {
-        isDown = false;
-        categoriesContainer.style.cursor = 'grab';
-    });
-
-    categoriesContainer.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - categoriesContainer.offsetLeft;
-        const walk = (x - startX) * 2; // سرعة التمرير
-        categoriesContainer.scrollLeft = scrollLeft - walk;
-    });
-    // --- نهاية الكود المضاف ---
-
-    // إضافة مستمعين للأحداث بعد الإنشاء
-    picker.querySelector('[data-emoji-search]').addEventListener('input', handleSearch);
-    picker.querySelectorAll('.emoji-picker-category').forEach(btn => {
-        btn.addEventListener('click', () => showCategory(btn.dataset.category));
-    });
+    // --- 3. المتغيرات العامة (Global Variables) ---
+    let picker = null;
+    let activeInput = null;
+    let activeButton = null;
+    let currentCategory = null; // تخزين الفئة الحالية
+    let isCategoryLoading = false; // متغير لتتبع حالة التحميل
     
-    // إضافة مستمع حدث لزر مسافة للخلف
-    const backspaceBtn = picker.querySelector('.backspace');
-    if (backspaceBtn) {
-        backspaceBtn.addEventListener('click', handleBackspace);
+    // --- 4. إدارة اللغة ---
+    // الحصول على اللغة الحالية من localStorage أو تحديدها بناءً على لغة المتصفح
+    let isArabic = localStorage.getItem('emoji-picker-language') === 'ar' || 
+                   (localStorage.getItem('emoji-picker-language') === null && navigator.language.includes('ar'));
+    
+    // حفظ اللغة في localStorage
+    function saveLanguagePreference() {
+        localStorage.setItem('emoji-picker-language', isArabic ? 'ar' : 'en');
+    }
+    
+    // تبديل اللغة
+    function toggleLanguage() {
+        isArabic = !isArabic;
+        saveLanguagePreference();
+        updateLanguageToggle();
+        updatePickerLanguage();
+        
+        // إذا كان المنتقي مفتوحًا، أعد تحميل الفئة الحالية
+        if (picker && picker.style.display === 'flex' && currentCategory) {
+            showCategory(currentCategory, true);
+        }
+    }
+    
+    // تحديث واجهة المنتقي بناءً على اللغة
+    function updatePickerLanguage() {
+        if (!picker) return;
+        
+        const searchInput = picker.querySelector('.emoji-picker-search');
+        if (searchInput) {
+            searchInput.placeholder = isArabic ? 'ابحث عن إيموجي...' : 'Search for emoji...';
+        }
+        
+        // تحديث أسماء الفئات
+        const categoryNames = {
+            'Smileys & People': isArabic ? 'وجوه وأشخاص' : 'Smileys & People',
+            'Animals & Nature': isArabic ? 'حيوانات وطبيعة' : 'Animals & Nature',
+            'Food & Drink': isArabic ? 'طعام وشراب' : 'Food & Drink',
+            'Activities': isArabic ? 'أنشطة' : 'Activities',
+            'Travel & Places': isArabic ? 'سفر وأماكن' : 'Travel & Places',
+            'Objects': isArabic ? 'أشياء' : 'Objects',
+            'Symbols': isArabic ? 'رموز' : 'Symbols',
+            'Flags': isArabic ? 'أعلام' : 'Flags'
+        };
+        
+        picker.querySelectorAll('.emoji-picker-category').forEach(btn => {
+            const categoryName = btn.dataset.category;
+            if (categoryNames[categoryName]) {
+                btn.textContent = categoryNames[categoryName].split(' ')[0];
+            }
+        });
+        
+        // تحديث تلميحات الأدوات للإيموجي
+        picker.querySelectorAll('.emoji-picker-emoji').forEach(emoji => {
+            const emojiChar = emoji.textContent;
+            const name = getEmojiName(emojiChar);
+            emoji.title = name;
+        });
+    }
+    
+    // تحديث زر تبديل اللغة
+    function updateLanguageToggle() {
+        const toggle = document.querySelector('.language-toggle');
+        if (!toggle) return;
+        
+        const checkbox = toggle.querySelector('input[type="checkbox"]');
+        const arLabel = toggle.querySelector('span:first-child');
+        const enLabel = toggle.querySelector('span:last-child');
+        
+        if (checkbox) {
+            checkbox.checked = !isArabic;
+        }
+        
+        if (arLabel) {
+            arLabel.textContent = 'العربية';
+            arLabel.classList.toggle('active', isArabic);
+        }
+        
+        if (enLabel) {
+            enLabel.textContent = 'English';
+            enLabel.classList.toggle('active', !isArabic);
+        }
+    }
+    
+    // إنشاء زر تبديل اللغة
+    function createLanguageToggle() {
+        const toggle = document.createElement('div');
+        toggle.className = 'language-toggle Wave-cloud';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'language-checkbox';
+        checkbox.checked = !isArabic;
+        
+        const label = document.createElement('label');
+        label.htmlFor = 'language-checkbox';
+        
+        const arLabel = document.createElement('span');
+        arLabel.textContent = 'العربية';
+        arLabel.classList.toggle('active', isArabic);
+        
+        const enLabel = document.createElement('span');
+        enLabel.textContent = 'English';
+        enLabel.classList.toggle('active', !isArabic);
+        
+        label.appendChild(arLabel);
+        label.appendChild(enLabel);
+        
+        toggle.appendChild(checkbox);
+        toggle.appendChild(label);
+        
+        checkbox.addEventListener('change', toggleLanguage);
+        
+        return toggle;
     }
 
-    // تحميل الفئة الأولى فقط عند بدء تشغيل المنتقي
-    showCategory(firstCategoryName);
-    console.log('Emoji picker created with dynamic loading');
-}
+    // --- 5. دوال مساعدة (Helper Functions) ---
 
-/**
- * إنشاء قسم الإيموجي ديناميكيًا مع التحميل التدريجي
- */
-function createEmojiSection(categoryName) {
-    const content = picker.querySelector('.emoji-picker-content');
-    
-    // إنشاء قسم جديد
-    const section = document.createElement('div');
-    section.className = 'emoji-picker-section';
-    section.setAttribute('data-category', categoryName);
-    
-    // إضافة الإيموجي للقسم بشكل تدريجي
-    const searchInput = picker.querySelector('.emoji-picker-search');
-    searchInput.classList.add('loading'); // تعطيل البحث أثناء التحميل
-    
-    let index = 0;
-    const emojis = emojiData[categoryName];
-    
-    function addNextEmoji() {
-        if (index >= emojis.length) {
-            // تم تحميل جميع الإيموجي
-            searchInput.classList.remove('loading'); // تمكين البحث بعد التحميل
-            isCategoryLoading = false;
+    /**
+     * الحصول على اسم الإيموجي حسب اللغة
+     */
+    function getEmojiName(emoji) {
+        if (emojiNames[emoji]) {
+            return isArabic ? emojiNames[emoji].ar : emojiNames[emoji].en;
+        }
+        return emoji; // للبحث، سنستخدم الرمز نفسه إذا لم يكن هناك اسم
+    }
+
+    /**
+     * إنشاء منتقي الإيموجي وإضافته إلى الصفحة مرة واحدة فقط
+     */
+    function createPicker() {
+        if (document.getElementById('emoji-picker-container')) return;
+
+        picker = document.createElement('div');
+        picker.id = 'emoji-picker-container';
+        picker.className = 'emoji-picker-container';
+        picker.setAttribute('data-emoji-picker', 'true');
+
+        // بناء محتوى المنتقي باستخدام innerHTML
+        let categoriesHTML = '';
+        let firstCategoryName = null;
+        
+        // أسماء الفئات حسب اللغة
+        const categoryNames = {
+            'Smileys & People': isArabic ? 'وجوه وأشخاص' : 'Smileys & People',
+            'Animals & Nature': isArabic ? 'حيوانات وطبيعة' : 'Animals & Nature',
+            'Food & Drink': isArabic ? 'طعام وشراب' : 'Food & Drink',
+            'Activities': isArabic ? 'أنشطة' : 'Activities',
+            'Travel & Places': isArabic ? 'سفر وأماكن' : 'Travel & Places',
+            'Objects': isArabic ? 'أشياء' : 'Objects',
+            'Symbols': isArabic ? 'رموز' : 'Symbols',
+            'Flags': isArabic ? 'أعلام' : 'Flags'
+        };
+
+        for (const categoryName in emojiData) {
+            if (!firstCategoryName) firstCategoryName = categoryName;
+
+            // زر الفئة
+            const displayName = categoryNames[categoryName] || categoryName;
+            categoriesHTML += `<div class="emoji-picker-category" data-category="${categoryName}">
+                ${displayName.split(' ')[0]}
+            </div>`;
+        }
+
+        picker.innerHTML = `
+            <input type="text" class="emoji-picker-search" placeholder="${isArabic ? 'ابحث عن إيموجي...' : 'Search for emoji...'}" data-emoji-search="true">
+            <div class="emoji-picker-categories">
+                <div style="display: flex !important;margin-right: 10px !important;cursor: context-menu !important;">${categoriesHTML}</div>
+                <div class="backspace" title="${isArabic ? 'حذف' : 'Delete'}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M135.19 390.14a28.79 28.79 0 0021.68 9.86h246.26A29 29 0 00432 371.13V140.87A29 29 0 00403.13 112H156.87a28.84 28.84 0 00-21.67 9.84v0L46.33 256l88.86 134.11z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33"/></svg>
+                </div>
+            </div>
+            <div class="emoji-picker-content">
+                <!-- سيتم إضافة الأقسام ديناميكيًا -->
+            </div>
+        `;
+
+        // إضافة زر تبديل اللغة
+        const languageToggle = createLanguageToggle();
+        picker.appendChild(languageToggle);
+
+        document.body.appendChild(picker);
+
+        // --- بداية الكود المضاف للتمرير بالسحب ---
+        const categoriesContainer = picker.querySelector('.emoji-picker-categories');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        categoriesContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            categoriesContainer.style.cursor = 'grabbing';
+            startX = e.pageX - categoriesContainer.offsetLeft;
+            scrollLeft = categoriesContainer.scrollLeft;
+            e.preventDefault(); // منع تحديد النص
+        });
+
+        categoriesContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            categoriesContainer.style.cursor = 'grab';
+        });
+
+        categoriesContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            categoriesContainer.style.cursor = 'grab';
+        });
+
+        categoriesContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - categoriesContainer.offsetLeft;
+            const walk = (x - startX) * 2; // سرعة التمرير
+            categoriesContainer.scrollLeft = scrollLeft - walk;
+        });
+        // --- نهاية الكود المضاف ---
+
+        // إضافة مستمعين للأحداث بعد الإنشاء
+        picker.querySelector('[data-emoji-search]').addEventListener('input', handleSearch);
+        picker.querySelectorAll('.emoji-picker-category').forEach(btn => {
+            btn.addEventListener('click', () => showCategory(btn.dataset.category));
+        });
+        
+        // إضافة مستمع حدث لزر مسافة للخلف
+        const backspaceBtn = picker.querySelector('.backspace');
+        if (backspaceBtn) {
+            backspaceBtn.addEventListener('click', handleBackspace);
+        }
+
+        // تحميل الفئة الأولى فقط عند بدء تشغيل المنتقي
+        showCategory(firstCategoryName);
+        console.log('Emoji picker created with dynamic loading');
+    }
+
+    /**
+     * إنشاء قسم الإيموجي ديناميكيًا مع التحميل التدريجي
+     */
+    function createEmojiSection(categoryName) {
+        const content = picker.querySelector('.emoji-picker-content');
+        
+        // إنشاء قسم جديد
+        const section = document.createElement('div');
+        section.className = 'emoji-picker-section';
+        section.setAttribute('data-category', categoryName);
+        
+        // إضافة الإيموجي للقسم بشكل تدريجي
+        const searchInput = picker.querySelector('.emoji-picker-search');
+        searchInput.classList.add('loading'); // تعطيل البحث أثناء التحميل
+        
+        let index = 0;
+        const emojis = emojiData[categoryName];
+        
+        function addNextEmoji() {
+            if (index >= emojis.length) {
+                // تم تحميل جميع الإيموجي
+                searchInput.classList.remove('loading'); // تمكين البحث بعد التحميل
+                isCategoryLoading = false;
+                return;
+            }
+            
+            const emojiChar = emojis[index];
+            const emojiName = getEmojiName(emojiChar);
+            
+            // إنشاء عنصر الإيموجي
+            const emojiElement = document.createElement('span');
+            emojiElement.className = 'emoji-picker-emoji Wave-center';
+            emojiElement.title = emojiName;
+            emojiElement.textContent = emojiChar;
+            
+            // إضافة مستمع حدث للنقر
+            emojiElement.addEventListener('click', () => insertEmoji(emojiChar));
+            
+            // إضافة الإيموجي للقسم
+            section.appendChild(emojiElement);
+            
+            index++;
+            
+            // جدولة الإيموجي التالي
+            setTimeout(addNextEmoji, 2); // 2 ملي ثانية بين كل إيموجي
+        }
+        
+        // بدء تحميل الإيموجي
+        isCategoryLoading = true;
+        addNextEmoji();
+        
+        return section;
+    }
+
+    /**
+     * التعامل مع النقر على زر مسافة للخلف
+     */
+    function handleBackspace() {
+        if (!activeInput) return;
+        
+        const start = activeInput.selectionStart;
+        const end = activeInput.selectionEnd;
+        const value = activeInput.value;
+        
+        // إذا كان هناك نص محدد، قم بحذفه
+        if (start !== end) {
+            const textBefore = value.substring(0, start);
+            const textAfter = value.substring(end);
+            activeInput.value = textBefore + textAfter;
+            activeInput.selectionStart = activeInput.selectionEnd = start;
+        } 
+        // إذا لم يكن هناك نص محدد، احذف الحرف الأخير
+        else if (start > 0) {
+            // استخراج آخر 4 أحرف للتحقق من الإيموجي المركب
+            const lastChars = value.substring(Math.max(0, start - 4), start);
+            
+            // التحقق مما إذا كان الحرف الأخير هو إيموجي
+            let emojiLength = 1;
+            
+            // استخدام Intl.Segmenter إذا كان متاحًا
+            if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+                try {
+                    const segmenter = new Intl.Segmenter();
+                    const segments = Array.from(segmenter.segment(lastChars));
+                    if (segments.length > 0) {
+                        emojiLength = segments[segments.length - 1].segment.length;
+                    }
+                } catch (e) {
+                    console.error('Error using Intl.Segmenter:', e);
+                    // استخدام الطريقة البديلة إذا فشلت Intl.Segmenter
+                    emojiLength = getEmojiLength(lastChars);
+                }
+            } else {
+                // استخدام الطريقة البديلة إذا لم يكن Intl.Segmenter متاحًا
+                emojiLength = getEmojiLength(lastChars);
+            }
+            
+            const textBefore = value.substring(0, start - emojiLength);
+            const textAfter = value.substring(start);
+            activeInput.value = textBefore + textAfter;
+            activeInput.selectionStart = activeInput.selectionEnd = start - emojiLength;
+        }
+        
+        // إطلاق حدث 'input' ليتمكن أطراف العمل الأخرى (مثل React, Vue) من ملاحظة التغيير
+        activeInput.dispatchEvent(new Event('input', { bubbles: true }));
+        activeInput.focus();
+    }
+
+    /**
+     * الحصول على طول الإيموجي (طريقة بديلة لـ Intl.Segmenter)
+     */
+    function getEmojiLength(text) {
+        // التحقق من آخر 4 أحرف (للإيموجي المركب من 4 أحرف)
+        if (text.length >= 4 && isEmoji(text.substring(text.length - 4))) {
+            return 4;
+        }
+        // التحقق من آخر 3 أحرف (للإيموجي المركب من 3 أحرف)
+        else if (text.length >= 3 && isEmoji(text.substring(text.length - 3))) {
+            return 3;
+        }
+        // التحقق من آخر حرفين (للإيموجي المركب من حرفين)
+        else if (text.length >= 2 && isEmoji(text.substring(text.length - 2))) {
+            return 2;
+        }
+        // الافتراضي: حرف واحد
+        return 1;
+    }
+
+    /**
+     * التحقق مما إذا كان النص هو إيموجي
+     */
+    function isEmoji(text) {
+        const regex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udde1-\uddff]|[\ud83c\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
+        return regex.test(text);
+    }
+
+    /**
+     * عرض قسم معين من الإيموجي مع التحميل الديناميكي
+     */
+    function showCategory(categoryName, forceReload = false) {
+        // التعديل: إضافة معلمة forceReload للسماح بإعادة تحميل الفئة عند مسح البحث
+        // إذا كانت هذه هي الفئة الحالية ولم يتم فرض إعادة التحميل، لا تفعل شيئًا
+        if (currentCategory === categoryName && !forceReload) return;
+        
+        // تحديث أزرار الفئات
+        document.querySelectorAll('.emoji-picker-category').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.category === categoryName);
+        });
+        
+        // الحصول على حاوية المحتوى
+        const content = picker.querySelector('.emoji-picker-content');
+        
+        // إذا كان هناك قسم حالي، قم بإزالته
+        const currentSection = content.querySelector('.emoji-picker-section.active');
+        if (currentSection) {
+            currentSection.remove();
+        }
+        
+        // إنشاء وإضافة القسم الجديد
+        const newSection = createEmojiSection(categoryName);
+        content.appendChild(newSection);
+        
+        // تحديث الفئة الحالية
+        currentCategory = categoryName;
+        
+        // جعل القسم الجديد نشطًا
+        setTimeout(() => {
+            newSection.classList.add('active');
+        }, 10);
+    }
+
+    /**
+     * التعامل مع البحث في الإيموجي
+     */
+    function handleSearch(e) {
+        // منع البحث أثناء تحميل الفئة
+        if (isCategoryLoading) {
+            e.preventDefault();
             return;
         }
         
-        const emojiChar = emojis[index];
-        const emojiName = getEmojiName(emojiChar);
+        const searchTerm = e.target.value.toLowerCase();
         
-        // إنشاء عنصر الإيموجي
-        const emojiElement = document.createElement('span');
-        emojiElement.className = 'emoji-picker-emoji Wave-center';
-        emojiElement.title = emojiName;
-        emojiElement.textContent = emojiChar;
-        
-        // إضافة مستمع حدث للنقر
-        emojiElement.addEventListener('click', () => insertEmoji(emojiChar));
-        
-        // إضافة الإيموجي للقسم
-        section.appendChild(emojiElement);
-        
-        index++;
-        
-        // جدولة الإيموجي التالي
-        setTimeout(addNextEmoji, 2); // 2 ملي ثانية بين كل إيموجي
-    }
-    
-    // بدء تحميل الإيموجي
-    isCategoryLoading = true;
-    addNextEmoji();
-    
-    return section;
-}
-
-/**
- * التعامل مع النقر على زر مسافة للخلف
- */
-function handleBackspace() {
-    if (!activeInput) return;
-    
-    const start = activeInput.selectionStart;
-    const end = activeInput.selectionEnd;
-    const value = activeInput.value;
-    
-    // إذا كان هناك نص محدد، قم بحذفه
-    if (start !== end) {
-        const textBefore = value.substring(0, start);
-        const textAfter = value.substring(end);
-        activeInput.value = textBefore + textAfter;
-        activeInput.selectionStart = activeInput.selectionEnd = start;
-    } 
-    // إذا لم يكن هناك نص محدد، احذف الحرف الأخير
-    else if (start > 0) {
-        // استخراج آخر 4 أحرف للتحقق من الإيموجي المركب
-        const lastChars = value.substring(Math.max(0, start - 4), start);
-        
-        // التحقق مما إذا كان الحرف الأخير هو إيموجي
-        let emojiLength = 1;
-        
-        // استخدام Intl.Segmenter إذا كان متاحًا
-        if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-            try {
-                const segmenter = new Intl.Segmenter();
-                const segments = Array.from(segmenter.segment(lastChars));
-                if (segments.length > 0) {
-                    emojiLength = segments[segments.length - 1].segment.length;
-                }
-            } catch (e) {
-                console.error('Error using Intl.Segmenter:', e);
-                // استخدام الطريقة البديلة إذا فشلت Intl.Segmenter
-                emojiLength = getEmojiLength(lastChars);
+        // إذا كان البحث فارغًا، أظهر الفئة الحالية مع فرض إعادة التحميل
+        if (!searchTerm) {
+            if (currentCategory) {
+                showCategory(currentCategory, true); // التعديل: فرض إعادة تحميل الفئة
             }
-        } else {
-            // استخدام الطريقة البديلة إذا لم يكن Intl.Segmenter متاحًا
-            emojiLength = getEmojiLength(lastChars);
+            return;
         }
         
-        const textBefore = value.substring(0, start - emojiLength);
-        const textAfter = value.substring(start);
-        activeInput.value = textBefore + textAfter;
-        activeInput.selectionStart = activeInput.selectionEnd = start - emojiLength;
-    }
-    
-    // إطلاق حدث 'input' ليتمكن أطراف العمل الأخرى (مثل React, Vue) من ملاحظة التغيير
-    activeInput.dispatchEvent(new Event('input', { bubbles: true }));
-    activeInput.focus();
-}
-
-/**
- * الحصول على طول الإيموجي (طريقة بديلة لـ Intl.Segmenter)
- */
-function getEmojiLength(text) {
-    // التحقق من آخر 4 أحرف (للإيموجي المركب من 4 أحرف)
-    if (text.length >= 4 && isEmoji(text.substring(text.length - 4))) {
-        return 4;
-    }
-    // التحقق من آخر 3 أحرف (للإيموجي المركب من 3 أحرف)
-    else if (text.length >= 3 && isEmoji(text.substring(text.length - 3))) {
-        return 3;
-    }
-    // التحقق من آخر حرفين (للإيموجي المركب من حرفين)
-    else if (text.length >= 2 && isEmoji(text.substring(text.length - 2))) {
-        return 2;
-    }
-    // الافتراضي: حرف واحد
-    return 1;
-}
-
-/**
- * التحقق مما إذا كان النص هو إيموجي
- */
-function isEmoji(text) {
-    const regex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udde1-\uddff]|[\ud83c\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g;
-    return regex.test(text);
-}
-
-/**
- * عرض قسم معين من الإيموجي مع التحميل الديناميكي
- */
-function showCategory(categoryName, forceReload = false) {
-    // التعديل: إضافة معلمة forceReload للسماح بإعادة تحميل الفئة عند مسح البحث
-    // إذا كانت هذه هي الفئة الحالية ولم يتم فرض إعادة التحميل، لا تفعل شيئًا
-    if (currentCategory === categoryName && !forceReload) return;
-    
-    // تحديث أزرار الفئات
-    document.querySelectorAll('.emoji-picker-category').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.category === categoryName);
-    });
-    
-    // الحصول على حاوية المحتوى
-    const content = picker.querySelector('.emoji-picker-content');
-    
-    // إذا كان هناك قسم حالي، قم بإزالته
-    const currentSection = content.querySelector('.emoji-picker-section.active');
-    if (currentSection) {
-        currentSection.remove();
-    }
-    
-    // إنشاء وإضافة القسم الجديد
-    const newSection = createEmojiSection(categoryName);
-    content.appendChild(newSection);
-    
-    // تحديث الفئة الحالية
-    currentCategory = categoryName;
-    
-    // جعل القسم الجديد نشطًا
-    setTimeout(() => {
-        newSection.classList.add('active');
-    }, 10);
-}
-
-/**
- * التعامل مع البحث في الإيموجي
- */
-function handleSearch(e) {
-    // منع البحث أثناء تحميل الفئة
-    if (isCategoryLoading) {
-        e.preventDefault();
-        return;
-    }
-    
-    const searchTerm = e.target.value.toLowerCase();
-    
-    // إذا كان البحث فارغًا، أظهر الفئة الحالية مع فرض إعادة التحميل
-    if (!searchTerm) {
-        if (currentCategory) {
-            showCategory(currentCategory, true); // التعديل: فرض إعادة تحميل الفئة
-        }
-        return;
-    }
-    
-    // البحث في جميع الفئات
-    const content = picker.querySelector('.emoji-picker-content');
-    
-    // إزالة القسم الحالي
-    const currentSection = content.querySelector('.emoji-picker-section');
-    if (currentSection) {
-        currentSection.remove();
-    }
-    
-    // إنشاء قسم للنتائج
-    const resultsSection = document.createElement('div');
-    resultsSection.className = 'emoji-picker-section active';
-    
-    // البحث عن الإيموجي المطابقة
-    let resultsHTML = '';
-    for (const categoryName in emojiData) {
-        emojiData[categoryName].forEach(emojiChar => {
-            const name = getEmojiName(emojiChar);
-            if (name.toLowerCase().includes(searchTerm)) {
-                resultsHTML += `<span class="emoji-picker-emoji Wave-cloud" title="${name}">${emojiChar}</span>`;
-            }
-        });
-    }
-    
-    resultsSection.innerHTML = resultsHTML;
-    
-    // إضافة مستمعي الأحداث للإيموجي
-    resultsSection.querySelectorAll('.emoji-picker-emoji').forEach(span => {
-        span.addEventListener('click', () => insertEmoji(span.textContent));
-    });
-    
-    // إضافة قسم النتائج
-    content.appendChild(resultsSection);
-}
-
-/**
- * إدراج الإيموجي في حقل الإدخال النشط
- */
-function insertEmoji(emoji) {
-    if (!activeInput) return;
-
-    const start = activeInput.selectionStart;
-    const end = activeInput.selectionEnd;
-    const value = activeInput.value;
-    const textBefore = value.substring(0, start);
-    const textAfter = value.substring(end);
-
-    activeInput.value = textBefore + emoji + textAfter;
-    activeInput.selectionStart = activeInput.selectionEnd = start + emoji.length;
-
-    // إطلاق حدث 'input' ليتمكن أطراف العمل الأخرى (مثل React, Vue) من ملاحظة التغيير
-    activeInput.dispatchEvent(new Event('input', { bubbles: true }));
-
-    // التعديل: لا نخفي المنتقي بعد إدراج إيموجي
-    // keep picker open after inserting emoji
-    activeInput.focus();
-}
-
-/**
- * تحديث موقع زر الإيموجي
- */
-function updateButtonPosition(input, button = input.emojiButton) {
-    if (!input || !button) return;
-    
-    try {
-        const rect = input.getBoundingClientRect();
-        const scrollY = window.scrollY || document.documentElement.scrollTop;
-        const scrollX = window.scrollX || document.documentElement.scrollLeft;
+        // البحث في جميع الفئات
+        const content = picker.querySelector('.emoji-picker-content');
         
-        // التعديل: ضبط موقع الزر بعيدًا قليلاً عن الحقل
-        button.style.top = `${rect.top + scrollY}px`;
-        button.style.left = `${rect.right + scrollX - 35}px`;
-        
-        // التأكد من أن الزر لا يخرج عن حدود الشاشة
-        const buttonWidth = 35;
-        const buttonHeight = 35;
-        
-        if (rect.right + scrollX - buttonWidth < 0) {
-            button.style.left = `${rect.left + scrollX}px`;
+        // إزالة القسم الحالي
+        const currentSection = content.querySelector('.emoji-picker-section');
+        if (currentSection) {
+            currentSection.remove();
         }
         
-        // التأكد من أن الزر لا يخرج من الأعلى
-        if (rect.top + scrollY < 0) {
-            button.style.top = `${scrollY + 10}px`;
-        }
+        // إنشاء قسم للنتائج
+        const resultsSection = document.createElement('div');
+        resultsSection.className = 'emoji-picker-section active';
         
-        console.log('Button positioned at:', button.style.top, button.style.left);
-    } catch (error) {
-        console.error('Error updating button position:', error);
-    }
-}
-
-/**
- * التحقق مما إذا كان يجب إضافة زر لعنصر
- * تم تعديل هذه الدالة لإضافة شرط وجود كلاس emoji-input
- */
-function shouldAddButton(element) {
-    // استبعاد حقل البحث الخاص بمنتقي الإيموجي نفسه
-    if (element.hasAttribute('data-emoji-search') || 
-        element.closest('[data-emoji-picker]')) {
-        return false;
-    }
-    
-    // الشرط المضاف: يجب أن يحتوي العنصر على كلاس "emoji-input"
-    if (!element.classList.contains('emoji-input')) {
-        return false;
-    }
-    
-    return (
-        (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'search' || !element.type)) ||
-        (element.tagName === 'TEXTAREA') ||
-        (element.isContentEditable && !element.closest('[data-emoji-picker]')) ||
-        (element.getAttribute('contenteditable') === 'true' && !element.closest('[data-emoji-picker]'))
-    );
-}
-
-/**
- * عرض زر الإيموجي بجانب حقل الإدخال
- */
-function showButton(input) {
-    // التحقق أولاً إذا كان هذا العنصر جزءاً من منتقي الإيموجي
-    if (input.hasAttribute('data-emoji-search') || input.closest('[data-emoji-picker]')) {
-        console.log('Skipping emoji button for emoji picker search input');
-        return;
-    }
-    
-    // التحقق من الشرط المضاف: يجب أن يحتوي العنصر على كلاس "emoji-input"
-    if (!input.classList.contains('emoji-input')) {
-        console.log('Input element does not have emoji-input class, skipping');
-        return;
-    }
-    
-    console.log('showButton called for:', input.tagName, input.id || input.className);
-    
-    // التحقق من أن العنصر مرئي وممكن الوصول إليه
-    if (!input || input.offsetParent === null) {
-        console.log('Input element not visible');
-        return;
-    }
-
-    // إذا كان الزر موجودًا بالفعل، فقط أظهره
-    if (input.emojiButton && input.emojiButton.parentNode) {
-        console.log('Reusing existing button');
-        input.emojiButton.style.display = 'block';
-        updateButtonPosition(input);
-        activeButton = input.emojiButton;
-        return;
-    }
-
-    console.log('Creating new button');
-    
-    try {
-        const button = document.createElement('button');
-        button.className = 'emoji-picker-btn Wave-center';
-        button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><circle cx="184" cy="232" r="24"/><path d="M256.05 384c-45.42 0-83.62-29.53-95.71-69.83a8 8 0 017.82-10.17h175.69a8 8 0 017.82 10.17c-11.99 40.3-50.2 69.83-95.62 69.83z"/><circle cx="328" cy="232" r="24"/><circle cx="256" cy="256" r="208" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>';
-        button.type = 'button';
-        button.title = isArabic ? 'أضف إيموجي' : 'Add emoji';
-
-        // تحديث الموقع
-        updateButtonPosition(input, button);
-        
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Emoji button clicked');
-            togglePicker(input);
-        });
-
-        document.body.appendChild(button);
-        input.emojiButton = button;
-        activeButton = button;
-        activeInput = input;
-        
-        console.log('Button created successfully');
-        
-        // إعادة حساب الموضع بعد إضافة الزر إلى DOM
-        setTimeout(() => updateButtonPosition(input, button), 10);
-        
-    } catch (error) {
-        console.error('Error creating emoji button:', error);
-    }
-}
-
-/**
- * إخفاء زر الإيموجي
- */
-function hideButton(input) {
-    if (input.emojiButton) {
-        console.log('Hiding button for:', input.tagName);
-        input.emojiButton.style.display = 'none';
-    }
-}
-
-/**
- * إظهار أو إخفاء منتقي الإيموجي
- */
-function togglePicker(input) {
-    if (activeInput === input && picker.style.display === 'flex') {
-        hidePicker();
-    } else {
-        showPicker(input);
-    }
-}
-
-/**
- * عرض منتقي الإيموجي وتحديد موضعه
- */
-function showPicker(input) {
-    activeInput = input;
-    picker.style.display = 'flex';
-
-    const inputRect = input.getBoundingClientRect();
-    const pickerRect = picker.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-
-    let top = inputRect.bottom + window.scrollY;
-    let left = inputRect.left + window.scrollX;
-
-    // التحقق من المساحة العمودية (فوق/تحت)
-    if (inputRect.bottom + pickerRect.height > viewportHeight && inputRect.top > pickerRect.height) {
-        top = inputRect.top + window.scrollY - pickerRect.height;
-    }
-
-    // التحقق من المساحة الأفقية (يمين/يسار)
-    if (inputRect.left + pickerRect.width > viewportWidth) {
-        left = (inputRect.right + window.scrollX) - pickerRect.width;
-    }
-    
-    // التأكد من عدم خروج المنتقي من يسار الشاشة
-    if (left < 0) {
-        left = 10; // هامش بسيط من الحافة
-    }
-    
-    // التأكد من عدم خروج المنتقي من أعلى الشاشة
-    if (top < 0) {
-        top = 10;
-    }
-
-    picker.style.top = `${top}px`;
-    picker.style.left = `${left}px`;
-    
-    // تحديث موقع الزر
-    if (input.emojiButton) {
-        updateButtonPosition(input);
-    }
-}
-
-/**
- * إخفاء منتقي الإيموجي
- */
-function hidePicker() {
-    if (picker) {
-        picker.style.display = 'none';
-    }
-    // التعديل: لا نضبط activeInput على null
-    // نبقيه كما هو للحفاظ على حالة التركيز
-}
-
-/**
- * دالة التهيئة الرئيسية
- */
-function init() {
-    console.log('Initializing emoji picker...');
-    
-    createPicker();
-    console.log('Picker created successfully');
-
-    // إضافة مستمعي الأحداث لجميع حقول الإدخال المناسبة
-    document.addEventListener('focusin', (e) => {
-        const target = e.target;
-        console.log('Focusin event on:', target.tagName, target.type);
-        
-        if (shouldAddButton(target)) {
-            console.log('Showing button for element');
-            setTimeout(() => showButton(target), 50); // تأخير بسيط
-        }
-    }, true);
-
-    document.addEventListener('focusout', (e) => {
-        const target = e.target;
-        setTimeout(() => {
-            // التعديل: إخفاء الزر فقط إذا لم يكن المنتقي مفتوحًا
-            if (shouldAddButton(target) && (!picker || picker.style.display !== 'flex')) {
-                hideButton(target);
-                // لا نضبط activeInput على null هنا
-            }
-        }, 200);
-    }, true);
-
-    // أيضًا أضف مستمع للنقر للعناصر contenteditable
-    document.addEventListener('click', (e) => {
-        if ((e.target.isContentEditable || e.target.getAttribute('contenteditable') === 'true') && shouldAddButton(e.target)) {
-            setTimeout(() => showButton(e.target), 50);
-        }
-    });
-
-    // التعديل: إخفاء المنتقي عند النقر خارج أو عند الكتابة بالكيبورد
-    document.addEventListener('click', (e) => {
-        if (picker && picker.style.display === 'flex') {
-            // إذا كان النقر ليس داخل المنتقي ولا على زر الإيموجي
-            if (!picker.contains(e.target) && !e.target.classList.contains('emoji-picker-btn')) {
-                hidePicker();
-                // إذا كان هناك حقل إدخال نشط، نخفي زر الإيموجي الخاص به
-                if (activeInput && activeInput.emojiButton) {
-                    hideButton(activeInput);
-                }
-            }
-        }
-    });
-
-    // التعديل: إخفاء المنتقي عند الكتابة بالكيبورد
-    document.addEventListener('keydown', (e) => {
-        if (picker && picker.style.display === 'flex' && activeInput) {
-            // إذا كان المستخدم يكتب (مفاتيح غير خاصة بالإيموجي أو التنقل)
-            const isTypingKey = (
-                e.key.length === 1 || // حرف عادي
-                e.key === 'Backspace' ||
-                e.key === 'Delete' ||
-                e.key === 'Space' ||
-                e.key === ' '
-            );
-            
-            // إذا لم يكن المستخدم يضغط على مفتاح للإيموجي أو للبحث في المنتقي
-            const isEmojiPickerInteraction = (
-                e.key === 'Enter' ||
-                e.key === 'Escape' ||
-                e.key === 'Tab' ||
-                e.target.closest('[data-emoji-picker]')
-            );
-            
-            if (isTypingKey && !isEmojiPickerInteraction && e.target !== picker.querySelector('[data-emoji-search]')) {
-                hidePicker();
-            }
-        }
-    });
-
-    // تحديث موقع الأزرار عند التمرير
-    window.addEventListener('scroll', () => {
-        if (activeButton && activeInput) {
-            updateButtonPosition(activeInput);
-        }
-        // تحديث موقع المنتقي إذا كان مفتوحًا
-        if (picker && picker.style.display === 'flex' && activeInput) {
-            showPicker(activeInput);
-        }
-    }, { passive: true });
-
-    // تحديث موقع الأزرار عند تغيير حجم النافذة
-    window.addEventListener('resize', () => {
-        if (activeButton && activeInput) {
-            updateButtonPosition(activeInput);
-        }
-        // تحديث موقع المنتقي إذا كان مفتوحًا
-        if (picker && picker.style.display === 'flex' && activeInput) {
-            showPicker(activeInput);
-        }
-    }, { passive: true });
-
-    console.log('Event listeners added');
-    
-    // اختيار مباشر على بعض العناصر الموجودة
-    setTimeout(() => {
-        const testInputs = document.querySelectorAll('input[type="text"], input[type="search"], textarea, [contenteditable="true"]');
-        const filteredInputs = Array.from(testInputs).filter(input => shouldAddButton(input));
-        console.log(`Found ${filteredInputs.length} eligible input/textarea/contenteditable elements with emoji-input class`);
-        
-        // إضافة الأزرار للعناصر النشطة حالياً
-        filteredInputs.forEach(input => {
-            if (document.activeElement === input) {
-                showButton(input);
-            }
-        });
-    }, 1000);
-
-    // مراقبة التغييرات في DOM (للعناصر الديناميكية)
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1) {
-                    // التحقق من العناصر الجديدة
-                    if (node.matches && shouldAddButton(node)) {
-                        console.log('New eligible input element added:', node);
-                    }
-                    // التحقق من العناصر داخل العقدة المضافة
-                    if (node.querySelectorAll) {
-                        node.querySelectorAll('input[type="text"], input[type="search"], textarea, [contenteditable="true"]').forEach(el => {
-                            if (shouldAddButton(el) && document.activeElement === el) {
-                                setTimeout(() => showButton(el), 100);
-                            }
-                        });
-                    }
+        // البحث عن الإيموجي المطابقة
+        let resultsHTML = '';
+        for (const categoryName in emojiData) {
+            emojiData[categoryName].forEach(emojiChar => {
+                const name = getEmojiName(emojiChar);
+                if (name.toLowerCase().includes(searchTerm)) {
+                    resultsHTML += `<span class="emoji-picker-emoji Wave-cloud" title="${name}">${emojiChar}</span>`;
                 }
             });
+        }
+        
+        resultsSection.innerHTML = resultsHTML;
+        
+        // إضافة مستمعي الأحداث للإيموجي
+        resultsSection.querySelectorAll('.emoji-picker-emoji').forEach(span => {
+            span.addEventListener('click', () => insertEmoji(span.textContent));
         });
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-}
+        
+        // إضافة قسم النتائج
+        content.appendChild(resultsSection);
+    }
 
-// تشغيل التهيئة عند تحميل محتوى الصفحة بالكامل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+    /**
+     * إدراج الإيموجي في حقل الإدخال النشط
+     */
+    function insertEmoji(emoji) {
+        if (!activeInput) return;
+
+        const start = activeInput.selectionStart;
+        const end = activeInput.selectionEnd;
+        const value = activeInput.value;
+        const textBefore = value.substring(0, start);
+        const textAfter = value.substring(end);
+
+        activeInput.value = textBefore + emoji + textAfter;
+        activeInput.selectionStart = activeInput.selectionEnd = start + emoji.length;
+
+        // إطلاق حدث 'input' ليتمكن أطراف العمل الأخرى (مثل React, Vue) من ملاحظة التغيير
+        activeInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+        // التعديل: لا نخفي المنتقي بعد إدراج إيموجي
+        // keep picker open after inserting emoji
+        activeInput.focus();
+    }
+
+    /**
+     * تحديث موقع زر الإيموجي
+     */
+    function updateButtonPosition(input, button = input.emojiButton) {
+        if (!input || !button) return;
+        
+        try {
+            const rect = input.getBoundingClientRect();
+            const scrollY = window.scrollY || document.documentElement.scrollTop;
+            const scrollX = window.scrollX || document.documentElement.scrollLeft;
+            
+            // التعديل: ضبط موقع الزر بعيدًا قليلاً عن الحقل
+            button.style.top = `${rect.top + scrollY}px`;
+            button.style.left = `${rect.right + scrollX - 35}px`;
+            
+            // التأكد من أن الزر لا يخرج عن حدود الشاشة
+            const buttonWidth = 35;
+            const buttonHeight = 35;
+            
+            if (rect.right + scrollX - buttonWidth < 0) {
+                button.style.left = `${rect.left + scrollX}px`;
+            }
+            
+            // التأكد من أن الزر لا يخرج من الأعلى
+            if (rect.top + scrollY < 0) {
+                button.style.top = `${scrollY + 10}px`;
+            }
+            
+            console.log('Button positioned at:', button.style.top, button.style.left);
+        } catch (error) {
+            console.error('Error updating button position:', error);
+        }
+    }
+
+    /**
+     * التحقق مما إذا كان يجب إضافة زر لعنصر
+     * تم تعديل هذه الدالة لإضافة شرط وجود كلاس emoji-input
+     */
+    function shouldAddButton(element) {
+        // استبعاد حقل البحث الخاص بمنتقي الإيموجي نفسه
+        if (element.hasAttribute('data-emoji-search') || 
+            element.closest('[data-emoji-picker]')) {
+            return false;
+        }
+        
+        // الشرط المضاف: يجب أن يحتوي العنصر على كلاس "emoji-input"
+        if (!element.classList.contains('emoji-input')) {
+            return false;
+        }
+        
+        return (
+            (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'search' || !element.type)) ||
+            (element.tagName === 'TEXTAREA') ||
+            (element.isContentEditable && !element.closest('[data-emoji-picker]')) ||
+            (element.getAttribute('contenteditable') === 'true' && !element.closest('[data-emoji-picker]'))
+        );
+    }
+
+    /**
+     * عرض زر الإيموجي بجانب حقل الإدخال
+     */
+    function showButton(input) {
+        // التحقق أولاً إذا كان هذا العنصر جزءاً من منتقي الإيموجي
+        if (input.hasAttribute('data-emoji-search') || input.closest('[data-emoji-picker]')) {
+            console.log('Skipping emoji button for emoji picker search input');
+            return;
+        }
+        
+        // التحقق من الشرط المضاف: يجب أن يحتوي العنصر على كلاس "emoji-input"
+        if (!input.classList.contains('emoji-input')) {
+            console.log('Input element does not have emoji-input class, skipping');
+            return;
+        }
+        
+        console.log('showButton called for:', input.tagName, input.id || input.className);
+        
+        // التحقق من أن العنصر مرئي وممكن الوصول إليه
+        if (!input || input.offsetParent === null) {
+            console.log('Input element not visible');
+            return;
+        }
+
+        // إذا كان الزر موجودًا بالفعل، فقط أظهره
+        if (input.emojiButton && input.emojiButton.parentNode) {
+            console.log('Reusing existing button');
+            input.emojiButton.classList.add('visible');
+            updateButtonPosition(input);
+            activeButton = input.emojiButton;
+            return;
+        }
+
+        console.log('Creating new button');
+        
+        try {
+            const button = document.createElement('button');
+            button.className = 'emoji-picker-btn Wave-center';
+            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><circle cx="184" cy="232" r="24"/><path d="M256.05 384c-45.42 0-83.62-29.53-95.71-69.83a8 8 0 017.82-10.17h175.69a8 8 0 017.82 10.17c-11.99 40.3-50.2 69.83-95.62 69.83z"/><circle cx="328" cy="232" r="24"/><circle cx="256" cy="256" r="208" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>';
+            button.type = 'button';
+            button.title = isArabic ? 'أضف إيموجي' : 'Add emoji';
+
+            // تحديث الموقع
+            updateButtonPosition(input, button);
+            
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Emoji button clicked');
+                togglePicker(input);
+            });
+
+            document.body.appendChild(button);
+            input.emojiButton = button;
+            activeButton = button;
+            activeInput = input;
+            
+            // إظهار الزر بشكل تدريجي
+            setTimeout(() => {
+                button.classList.add('visible');
+            }, 10);
+            
+            console.log('Button created successfully');
+            
+            // إعادة حساب الموضع بعد إضافة الزر إلى DOM
+            setTimeout(() => updateButtonPosition(input, button), 10);
+            
+        } catch (error) {
+            console.error('Error creating emoji button:', error);
+        }
+    }
+
+    /**
+     * إخفاء زر الإيموجي
+     */
+    function hideButton(input) {
+        if (input.emojiButton) {
+            console.log('Hiding button for:', input.tagName);
+            input.emojiButton.classList.remove('visible');
+        }
+    }
+
+    /**
+     * إظهار أو إخفاء منتقي الإيموجي
+     */
+    function togglePicker(input) {
+        if (activeInput === input && picker.style.display === 'flex') {
+            hidePicker();
+        } else {
+            showPicker(input);
+        }
+    }
+
+    /**
+     * عرض منتقي الإيموجي وتحديد موضعه
+     */
+    function showPicker(input) {
+        activeInput = input;
+        picker.style.display = 'flex';
+
+        const inputRect = input.getBoundingClientRect();
+        const pickerRect = picker.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+
+        let top = inputRect.bottom + window.scrollY;
+        let left = inputRect.left + window.scrollX;
+
+        // التحقق من المساحة العمودية (فوق/تحت)
+        if (inputRect.bottom + pickerRect.height > viewportHeight && inputRect.top > pickerRect.height) {
+            top = inputRect.top + window.scrollY - pickerRect.height;
+        }
+
+        // التحقق من المساحة الأفقية (يمين/يسار)
+        if (inputRect.left + pickerRect.width > viewportWidth) {
+            left = (inputRect.right + window.scrollX) - pickerRect.width;
+        }
+        
+        // التأكد من عدم خروج المنتقي من يسار الشاشة
+        if (left < 0) {
+            left = 10; // هامش بسيط من الحافة
+        }
+        
+        // التأكد من عدم خروج المنتقي من أعلى الشاشة
+        if (top < 0) {
+            top = 10;
+        }
+
+        picker.style.top = `${top}px`;
+        picker.style.left = `${left}px`;
+        
+        // التعديل: دائماً عرض فئة "Smileys & People" عند فتح المنتقي
+        showCategory('Smileys & People');
+        
+        // تحديث موقع الزر
+        if (input.emojiButton) {
+            updateButtonPosition(input);
+        }
+    }
+
+    /**
+     * إخفاء منتقي الإيموجي
+     */
+    function hidePicker() {
+        if (picker) {
+            picker.style.display = 'none';
+        }
+        // التعديل: لا نضبط activeInput على null
+        // نبقيه كما هو للحفاظ على حالة التركيز
+    }
+
+    /**
+     * دالة التهيئة الرئيسية
+     */
+    function init() {
+        console.log('Initializing emoji picker...');
+        
+        createPicker();
+        
+        // تحديث واجهة المنتقي بناءً على اللغة الحالية
+        updatePickerLanguage();
+        updateLanguageToggle();
+        
+        console.log('Picker created successfully');
+
+        // إضافة مستمعي الأحداث لجميع حقول الإدخال المناسبة
+        document.addEventListener('focusin', (e) => {
+            const target = e.target;
+            console.log('Focusin event on:', target.tagName, target.type);
+            
+            if (shouldAddButton(target)) {
+                console.log('Showing button for element');
+                setTimeout(() => showButton(target), 50); // تأخير بسيط
+            }
+        }, true);
+
+        document.addEventListener('focusout', (e) => {
+            const target = e.target;
+            setTimeout(() => {
+                // التعديل: إخفاء الزر فقط إذا لم يكن المنتقي مفتوحًا
+                if (shouldAddButton(target) && (!picker || picker.style.display !== 'flex')) {
+                    hideButton(target);
+                    // لا نضبط activeInput على null هنا
+                }
+            }, 200);
+        }, true);
+
+        // أيضًا أضف مستمع للنقر للعناصر contenteditable
+        document.addEventListener('click', (e) => {
+            if ((e.target.isContentEditable || e.target.getAttribute('contenteditable') === 'true') && shouldAddButton(e.target)) {
+                setTimeout(() => showButton(e.target), 50);
+            }
+        });
+
+        // التعديل: إخفاء المنتقي عند النقر خارج أو عند الكتابة بالكيبورد
+        document.addEventListener('click', (e) => {
+            if (picker && picker.style.display === 'flex') {
+                // إذا كان النقر ليس داخل المنتقي ولا على زر الإيموجي
+                if (!picker.contains(e.target) && !e.target.classList.contains('emoji-picker-btn')) {
+                    hidePicker();
+                    // إذا كان هناك حقل إدخال نشط، نخفي زر الإيموجي الخاص به
+                    if (activeInput && activeInput.emojiButton) {
+                        hideButton(activeInput);
+                    }
+                }
+            }
+        });
+
+        // التعديل: إخفاء المنتقي عند الكتابة بالكيبورد
+        document.addEventListener('keydown', (e) => {
+            if (picker && picker.style.display === 'flex' && activeInput) {
+                // إذا كان المستخدم يكتب (مفاتيح غير خاصة بالإيموجي أو التنقل)
+                const isTypingKey = (
+                    e.key.length === 1 || // حرف عادي
+                    e.key === 'Backspace' ||
+                    e.key === 'Delete' ||
+                    e.key === 'Space' ||
+                    e.key === ' '
+                );
+                
+                // إذا لم يكن المستخدم يضغط على مفتاح للإيموجي أو للبحث في المنتقي
+                const isEmojiPickerInteraction = (
+                    e.key === 'Enter' ||
+                    e.key === 'Escape' ||
+                    e.key === 'Tab' ||
+                    e.target.closest('[data-emoji-picker]')
+                );
+                
+                if (isTypingKey && !isEmojiPickerInteraction && e.target !== picker.querySelector('[data-emoji-search]')) {
+                    hidePicker();
+                }
+            }
+        });
+
+        // تحديث موقع الأزرار عند التمرير
+        window.addEventListener('scroll', () => {
+            if (activeButton && activeInput) {
+                updateButtonPosition(activeInput);
+            }
+            // تحديث موقع المنتقي إذا كان مفتوحًا
+            if (picker && picker.style.display === 'flex' && activeInput) {
+                showPicker(activeInput);
+            }
+        }, { passive: true });
+
+        // تحديث موقع الأزرار عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            if (activeButton && activeInput) {
+                updateButtonPosition(activeInput);
+            }
+            // تحديث موقع المنتقي إذا كان مفتوحًا
+            if (picker && picker.style.display === 'flex' && activeInput) {
+                showPicker(activeInput);
+            }
+        }, { passive: true });
+
+        console.log('Event listeners added');
+        
+        // اختيار مباشر على بعض العناصر الموجودة
+        setTimeout(() => {
+            const testInputs = document.querySelectorAll('input[type="text"], input[type="search"], textarea, [contenteditable="true"]');
+            const filteredInputs = Array.from(testInputs).filter(input => shouldAddButton(input));
+            console.log(`Found ${filteredInputs.length} eligible input/textarea/contenteditable elements with emoji-input class`);
+            
+            // إضافة الأزرار للعناصر النشطة حالياً
+            filteredInputs.forEach(input => {
+                if (document.activeElement === input) {
+                    showButton(input);
+                }
+            });
+        }, 1000);
+
+        // مراقبة التغييرات في DOM (للعناصر الديناميكية)
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        // التحقق من العناصر الجديدة
+                        if (node.matches && shouldAddButton(node)) {
+                            console.log('New eligible input element added:', node);
+                        }
+                        // التحقق من العناصر داخل العقدة المضافة
+                        if (node.querySelectorAll) {
+                            node.querySelectorAll('input[type="text"], input[type="search"], textarea, [contenteditable="true"]').forEach(el => {
+                                if (shouldAddButton(el) && document.activeElement === el) {
+                                    setTimeout(() => showButton(el), 100);
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // تشغيل التهيئة عند تحميل محتوى الصفحة بالكامل
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
 
 })();
