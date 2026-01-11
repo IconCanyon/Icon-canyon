@@ -42,11 +42,12 @@
       overflow: hidden !important;
       z-index: 999999 !important;
       display: none;
-      resize: horizontal;
-      max-width: 453px;
-      min-width: 358px !important;
+      // resize: horizontal;
+      max-width: 264px;
+      min-width: 264px !important;
       color: rgb(36, 37, 39) !important;
       user-select: none !important;
+      transition: 0.3s !important;
     }
     .ccp-box a {
       color: rgb(36, 37, 39) !important;
@@ -63,6 +64,24 @@
       padding: 5px 8px !important;
       text-shadow: 0px 27px 0px !important;
     }
+    .ccp-box::before {
+      position: absolute !important;
+      z-index: 999999 !important;
+      content: '' !important;
+      display: none !important;
+      right: 4px !important;
+      bottom: -23px !important;
+      width: 10px !important;
+      height: 43px !important;
+      // opacity: 0 !important;
+      background: #ffffffff !important;
+      // background: #f3f6ff !important;
+      transform: rotate(45deg) !important;
+      box-shadow: 0px 1px 4px #41485578 !important;
+    }
+    // .ccp-box:hover:before {
+    //   opacity: 1;
+    // }
     .ccp-sat {
       width: 100% !important;
       height: 150px !important;
@@ -138,6 +157,8 @@
     }
     .ccp-input-short {
       flex: 1 !important;
+      width: 108px !important;
+      transition: 0.2s !important;
       text-align: center !important;
       border: 1px solid #ccccccb6 !important;
       border-radius: 5px !important;
@@ -1442,4 +1463,3 @@
   window.CustomColorPicker.checkForNewInputs = checkForDynamicInputs;
 
 })(window, document);
-
