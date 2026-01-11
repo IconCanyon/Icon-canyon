@@ -248,6 +248,10 @@
       opacity: 1 !important;
       background: rgba(0,0,0,0.1) !important;
     }
+    .ccp-selected-color-wrapper button:focus {
+      opacity: 1 !important;
+      background: rgba(0,0,0,0.1) !important;
+    }
     .ccp-sliders {
       margin-top: 8px !important;
     }
