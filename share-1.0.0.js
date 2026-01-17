@@ -54,7 +54,8 @@
       width:"100%", height:"80px", marginBottom:"10px", padding:"10px",
       fontSize:"14px", resize:"none", border:"solid 1px #ccc",
       borderRadius:"5px", fontFamily:"'Cairo', sans-serif",
-      lineHeight:1, outlineColor:"#3382ff"
+      lineHeight:1, outlineColor:"#3382ff",
+      borderBottom:"30px"
     });
 
     const sendBtn = document.createElement("button");
@@ -123,3 +124,4 @@
   window.Share={save, share};
 
 })();
+
