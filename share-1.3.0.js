@@ -34,9 +34,9 @@
     // إنشاء العناصر فقط عند الطلب
     const overlay = document.createElement("div");
     Object.assign(overlay.style, {
-      position:"fixed", top:0, left:0, width:"100%", height:"100%",
+      position:"fixed", top:0, left:0, width:"100%", bottom: "0",
       backgroundColor:"rgba(0,0,0,0)", display:"flex",
-      justifyContent:"center", alignItems:"center", zIndex:1000000,
+      justifyContent:"center", alignItems:"flex-start", zIndex:1000000,
       transition:"background-color 0.3s ease"
     });
 
@@ -46,7 +46,7 @@
       boxShadow:"0 5px 15px rgba(0,0,0,0.3)", textAlign:"center",
       position:"relative", transform:"scale(0.5)", opacity:0,
       transition:"all 0.3s ease",
-      marginBottom:"30px"
+      marginTop:"40px"
     });
 
     const textarea = document.createElement("textarea");
@@ -124,6 +124,7 @@
   window.Share={save, share};
 
 })();
+
 
 
 
