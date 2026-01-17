@@ -46,7 +46,7 @@
       boxShadow:"0 5px 15px rgba(0,0,0,0.3)", textAlign:"center",
       position:"relative", transform:"scale(0.5)", opacity:0,
       transition:"all 0.3s ease",
-      borderBottom:"30px"
+      marginBottom:"30px"
     });
 
     const textarea = document.createElement("textarea");
@@ -124,5 +124,6 @@
   window.Share={save, share};
 
 })();
+
 
 
