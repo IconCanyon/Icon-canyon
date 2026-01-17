@@ -86,14 +86,17 @@
     overlay.appendChild(box);
 
     function showPopup(){
-      // إضافة الـ overlay إلى الـ DOM عند الظهور
-      document.body.appendChild(overlay);
-      requestAnimationFrame(()=>{
-        overlay.style.backgroundColor="rgba(0,0,0,0.5)";
-        box.style.transform="scale(1)";
-        box.style.opacity=1;
-      });
-    }
+  // إضافة الـ overlay إلى الـ DOM عند الظهور
+  document.body.appendChild(overlay);
+  requestAnimationFrame(()=>{
+    overlay.style.backgroundColor="rgba(0,0,0,0.5)";
+    box.style.transform="scale(1)";
+    box.style.opacity=1;
+
+    // وضع التركيز على الـ textarea
+    textarea.focus();
+  });
+}
 
     function hidePopup(){
       overlay.style.backgroundColor="rgba(0,0,0,0)";
@@ -124,6 +127,7 @@
   window.Share={save, share};
 
 })();
+
 
 
 
