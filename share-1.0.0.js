@@ -45,7 +45,8 @@
       backgroundColor:"#fff", padding:"20px", borderRadius:"10px", width:"300px",
       boxShadow:"0 5px 15px rgba(0,0,0,0.3)", textAlign:"center",
       position:"relative", transform:"scale(0.5)", opacity:0,
-      transition:"all 0.3s ease"
+      transition:"all 0.3s ease",
+      borderBottom:"30px"
     });
 
     const textarea = document.createElement("textarea");
@@ -54,8 +55,7 @@
       width:"100%", height:"80px", marginBottom:"10px", padding:"10px",
       fontSize:"14px", resize:"none", border:"solid 1px #ccc",
       borderRadius:"5px", fontFamily:"'Cairo', sans-serif",
-      lineHeight:1, outlineColor:"#3382ff",
-      borderBottom:"30px"
+      lineHeight:1, outlineColor:"#3382ff"
     });
 
     const sendBtn = document.createElement("button");
@@ -124,4 +124,5 @@
   window.Share={save, share};
 
 })();
+
 
