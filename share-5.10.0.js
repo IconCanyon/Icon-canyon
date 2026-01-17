@@ -100,7 +100,7 @@
       label.style.justifyContent = "center";
       label.style.width = "92px";
       label.style.padding = "11px 0px";
-      label.style.textAlign = "webkit-center";
+      label.style.textAlign = "center";
       label.style.paddingTop = "15px";
 
       // صورة الموقع
@@ -210,5 +210,6 @@
   window.Share={save, shareMultiple};
 
 })();
+
 
 
