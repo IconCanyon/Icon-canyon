@@ -71,16 +71,16 @@
 
     // مصفوفة روابط الصور لكل موقع
     const siteIcons = {
-      whatsapp: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/whatsapp.svg",
-      telegram: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Telegram.png",
-      facebook: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Facebook.png",
-      x: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/X.svg",
-      linkedin: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/LinkedIn.png",
-      email: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/gmail.png",
-      sms: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/sms.webp",
-      messenger: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Messenger.png",
-      reddit: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/reddit.png",
-      pinterest: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/pinterest.png"
+      whatsapp: "https://raw.githubusercontent.com/IconCanyon/Icon-canyon/d897f7ddec753f3c0a2e67d7ef0b6cd31ec780b8/icon/whatsapp.svg",
+      telegram: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Telegram.png?raw=true",
+      facebook: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Facebook.png?raw=true",
+      x: "https://raw.githubusercontent.com/IconCanyon/Icon-canyon/d897f7ddec753f3c0a2e67d7ef0b6cd31ec780b8/icon/X.svg",
+      linkedin: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/LinkedIn.png?raw=true",
+      email: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/gmail.png?raw=true",
+      sms: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/sms.webp?raw=true",
+      messenger: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Messenger.png?raw=true",
+      reddit: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/reddit.png?raw=true",
+      pinterest: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/pinterest.png?raw=true"
     };
 
     const checkContainer = document.createElement("div");
@@ -209,4 +209,5 @@
   window.Share={save, shareMultiple};
 
 })();
+
 
