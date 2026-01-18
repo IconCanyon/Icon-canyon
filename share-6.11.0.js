@@ -52,21 +52,18 @@
   }
 
   // ===================== Create Popup =====================
-  function createPopup(selectedSite = null){
+  function createPopup(selectedSite = null, initialText = ""){
     const allowedSites = getAllowedSites();
-    
-    // إذا لم يكن هناك مواقع مسموح بها، لا تنشئ القائمة
-    if (allowedSites.length === 0) {
-      console.warn("لا توجد مواقع مشاركة مسموح بها في هذه الصفحة");
-      return;
-    }
+    const allProviderKeys = Object.keys(providers);
 
     const overlay = document.createElement("div");
     Object.assign(overlay.style, {
       position:"fixed", top:0, left:0, width:"100%", bottom: "0",
       backgroundColor:"rgba(0,0,0,0)", display:"flex",
       justifyContent:"center", alignItems:"flex-start", zIndex:1000000,
-      transition:"background-color 0.3s ease"
+      transition:"background-color 0.3s ease",
+      overflowY: "auto",
+      padding: "16px 0"
     });
 
     const box = document.createElement("div");
@@ -75,21 +72,22 @@
       boxShadow:"0 5px 15px rgba(0,0,0,0.3)", textAlign:"center",
       position:"relative", transform:"scale(0.5)", opacity:0,
       transition:"all 0.3s ease", marginTop:"100px",
-      userSelect: "none"
+      userSelect: "none",
+      margin: "auto 0"
     });
 
     // textarea للرسالة
     const textarea = document.createElement("textarea");
     textarea.placeholder="اكتب رسالتك هنا...";
+    textarea.value = initialText; // وضع النص المخصص من textname
     Object.assign(textarea.style,{
       width:"100%", height:"80px", marginBottom:"10px", padding:"10px",
       fontSize:"14px", resize:"none", border:"solid 1px #ccc",
       borderRadius:"5px", fontFamily:"'Cairo', sans-serif",
-      lineHeight:1, outlineColor:"#3382ff"
+      lineHeight:1.4, outlineColor:"#3382ff"
     });
     box.appendChild(textarea);
 
-    // مصفوفة روابط الصور لكل موقع
     const siteIcons = {
       whatsapp: "https://raw.githubusercontent.com/IconCanyon/Icon-canyon/d897f7ddec753f3c0a2e67d7ef0b6cd31ec780b8/icon/whatsapp.svg",
       telegram: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Telegram.png?raw=true",
@@ -104,27 +102,28 @@
     };
 
     const checkContainer = document.createElement("div");
-    checkContainer.style.textAlign = "left";
-    checkContainer.style.maxHeight = "240px";
-    checkContainer.style.overflowY = "auto";
-    checkContainer.style.scrollbarWidth = "none";
-    checkContainer.style.marginBottom = "10px";
-    checkContainer.style.display = "flex";
-    checkContainer.style.flexWrap = "wrap";
-    checkContainer.style.gap = "2px";
+    Object.assign(checkContainer.style, {
+      textAlign: "left", maxHeight: "240px", overflowY: "auto",
+      scrollbarWidth: "none", marginBottom: "10px", display: "flex",
+      flexWrap: "wrap", gap: "2px"
+    });
 
-    // عرض فقط المواقع المسموح بها
-    allowedSites.forEach(site=>{
+    // عرض جميع الخيارات المتاحة في السكريبت
+    allProviderKeys.forEach(site => {
+      const isAllowed = allowedSites.includes(site);
       const label = document.createElement("label");
-      label.style.position = "relative";
-      label.style.display = "grid";
-      label.style.justifyContent = "center";
-      label.style.width = "92px";
-      label.style.padding = "11px 0px";
-      label.style.textAlign = "center";
-      label.style.paddingTop = "15px";
+      label.className = "Wave-cloud";
+      
+      Object.assign(label.style, {
+        position: "relative", display: "grid", justifyContent: "center",
+        width: "92px", padding: "11px 0px", textAlign: "center",
+        paddingTop: "15px",
+        borderRadius: "16px",
+        opacity: isAllowed ? "1" : ".5", // شفافية 0.5 إذا لم يكن مضافاً بالموقع
+        pointerEvents: isAllowed ? "auto" : "none", // منع النقر إذا لم يكن مضافاً
+        cursor: isAllowed ? "pointer" : "default"
+      });
 
-      // صورة الموقع
       const img = document.createElement("img");
       img.src = siteIcons[site] || "";
       img.alt = site;
@@ -139,21 +138,23 @@
       radio.style.height="18px";
       radio.style.width="18px";
       radio.style.position="absolute";
-      radio.checked = (site === selectedSite);
+      radio.checked = (site === selectedSite && isAllowed);
+      if (!isAllowed) radio.disabled = true;
 
       const span = document.createElement("span");
       span.textContent = site.charAt(0).toUpperCase() + site.slice(1);
+      span.style.fontSize = "12px";
+      span.style.position = "relative";
+      span.style.bottom = "-8px";
 
       label.appendChild(img);
       label.appendChild(radio);
       label.appendChild(span);
-
       checkContainer.appendChild(label);
     });
 
     box.appendChild(checkContainer);
 
-    // زر الإرسال
     const sendBtn = document.createElement("button");
     sendBtn.textContent="إرسال";
     Object.assign(sendBtn.style,{
@@ -161,24 +162,24 @@
       borderRadius:"25px", border:"none", color:"white",
       background:"#3880ff", fontFamily:"'Cairo', sans-serif"
     });
+    
     sendBtn.addEventListener("click", ()=>{
       const customText = textarea.value.trim();
       const selectedRadio = checkContainer.querySelector("input:checked");
       if(!selectedRadio){
-        alert("يرجى اختيار منصة واحدة للمشاركة");
+        alert("يرجى اختيار منصة مفعّلة للمشاركة");
         return;
       }
       shareMultiple([selectedRadio.value], customText);
       hidePopup();
     });
 
-    // زر الإغلاق
     const closeBtn = document.createElement("button");
     closeBtn.textContent="إغلاق";
     Object.assign(closeBtn.style,{
       padding:"5px 18px", cursor:"pointer",
-      borderRadius:"25px", border:"none", color:"#000",
-      background:"#bfd6ff", fontFamily:"'Cairo', sans-serif"
+      borderRadius:"25px", border:"none", color:"rgb(0, 0, 0)",
+      background:"#dee7ff", fontFamily:"'Cairo', sans-serif"
     });
     closeBtn.addEventListener("click", hidePopup);
 
@@ -197,13 +198,6 @@
         box.style.transform="scale(1)";
         box.style.opacity=1;
         textarea.focus();
-
-        if(selectedSite && allowedSites.includes(selectedSite.toLowerCase())){
-          const targetRadio = checkContainer.querySelector(`input[value="${selectedSite.toLowerCase()}"]`);
-          if(targetRadio){
-            targetRadio.scrollIntoView({behavior: "smooth", block: "center"});
-          }
-        }
       });
     }
 
@@ -211,7 +205,7 @@
       overlay.style.backgroundColor="rgba(0,0,0,0)";
       box.style.transform="scale(0.5)";
       box.style.opacity=0;
-      setTimeout(()=> { overlay.remove(); },300);
+      setTimeout(()=> { overlay.remove(); }, 300);
     }
 
     overlay.addEventListener("click",(e)=>{
@@ -221,11 +215,16 @@
     showPopup();
   }
 
+  // مستمع الأحداث المحدث
   document.addEventListener("click", e=>{
     const el = e.target.closest('[name^="share:"]');
     if(!el) return;
+    
     const site = el.name.split(":")[1];
-    createPopup(site);
+    // جلب النص المخصص من سمة textname إذا وجدت
+    const customText = el.getAttribute("textname") || ""; 
+    
+    createPopup(site, customText);
   });
 
   window.Share={save, shareMultiple};
