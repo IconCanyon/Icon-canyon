@@ -73,7 +73,8 @@
       position:"relative", transform:"scale(0.5)", opacity:0,
       transition:"all 0.3s ease", marginTop:"100px",
       userSelect: "none",
-      margin: "auto 0"
+      marginBottom: "auto",
+      marginTop: "50px"
     });
 
     // textarea للرسالة
@@ -121,7 +122,7 @@
         borderRadius: "16px",
         opacity: isAllowed ? "1" : ".5", // شفافية 0.5 إذا لم يكن مضافاً بالموقع
         pointerEvents: isAllowed ? "auto" : "none", // منع النقر إذا لم يكن مضافاً
-        cursor: isAllowed ? "pointer" : "default"
+        cursor: isAllowed ? "context-menu" : "default"
       });
 
       const img = document.createElement("img");
@@ -130,16 +131,20 @@
       img.style.height = "24px";
       img.style.margin = "auto";
 
-      const radio = document.createElement("input");
-      radio.type = "radio";          
-      radio.name = "shareSite";      
-      radio.value = site;
-      radio.style.margin="2px";
-      radio.style.height="18px";
-      radio.style.width="18px";
-      radio.style.position="absolute";
-      radio.checked = (site === selectedSite && isAllowed);
-      if (!isAllowed) radio.disabled = true;
+      // إضافة زر الراديو فقط للخيارات المفعلة
+      if (isAllowed) {
+        const radio = document.createElement("input");
+        radio.type = "radio";          
+        radio.name = "shareSite";      
+        radio.value = site;
+        radio.style.margin="2px";
+        radio.style.height="18px";
+        radio.style.width="18px";
+        radio.style.position="absolute";
+        radio.checked = (site === selectedSite);
+        
+        label.appendChild(radio);
+      }
 
       const span = document.createElement("span");
       span.textContent = site.charAt(0).toUpperCase() + site.slice(1);
@@ -148,7 +153,6 @@
       span.style.bottom = "-8px";
 
       label.appendChild(img);
-      label.appendChild(radio);
       label.appendChild(span);
       checkContainer.appendChild(label);
     });
