@@ -279,7 +279,7 @@
           font-family: 'Cairo', sans-serif;
           font-weight: 600 !important;
           transition: all 0.2s ease;
-          cursor: pointer !important;
+          cursor: pointer;
           direction: ${textDirection} !important;
         }
         
@@ -296,7 +296,7 @@
           font-family: 'Cairo', sans-serif;
           font-weight: 600;
           transition: all 0.2s ease;
-          cursor: pointer !important;
+          cursor: pointer;
           direction: ${textDirection} !important;
         }
         
@@ -457,3 +457,4 @@
 
   window.Share = { save, shareMultiple, loadAllData };
 })();
+
