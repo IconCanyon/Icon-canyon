@@ -1,4 +1,3 @@
-
 // Example of usage:
 // Share.save({
 //   phone: "phone",
@@ -41,7 +40,24 @@
     },
     messenger: d => `https://www.facebook.com/dialog/send?link=${encodeURIComponent(d.url||"")}&app_id=YOUR_APP_ID&redirect_uri=${encodeURIComponent(d.url||"")}`,
     reddit: d => `https://www.reddit.com/submit?url=${encodeURIComponent(d.url||"")}&title=${encodeURIComponent(d.customText||d.text||"")}`,
-    pinterest: d => `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(d.url||"")}&description=${encodeURIComponent(d.customText||d.text||"")}`
+    pinterest: d => `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(d.url||"")}&description=${encodeURIComponent(d.customText||d.text||"")}`,
+    
+    // المواقع الإضافية الخمسة
+    instagram: d => {
+      // Instagram doesn't have direct sharing API, so we open app or use web URL
+      const text = encodeURIComponent(d.customText || d.text || "");
+      const url = encodeURIComponent(d.url || "");
+      const fullText = url ? `${text} ${url}`.trim() : text;
+      return `https://www.instagram.com/?text=${fullText}`;
+    },
+    tumblr: d => `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(d.url||"")}&title=${encodeURIComponent(d.customText||d.text||"")}`,
+    skype: d => `https://web.skype.com/share?url=${encodeURIComponent(d.url||"")}&text=${encodeURIComponent(d.customText||d.text||"")}`,
+    viber: d => `viber://forward?text=${encodeURIComponent((d.customText||d.text||"") + " " + (d.url||""))}`,
+    wechat: d => {
+      // WeChat doesn't have direct web sharing, so we provide alternative
+      const text = encodeURIComponent((d.customText || d.text || "") + " " + (d.url || ""));
+      return `weixin://dl/moments?text=${text}`;
+    }
   };
 
   const KEY = "share_user_data";
@@ -337,7 +353,12 @@
               sms: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/sms.webp?raw=true",
               messenger: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Messenger.png?raw=true",
               reddit: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/reddit.png?raw=true",
-              pinterest: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/pinterest.png?raw=true"
+              pinterest: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/pinterest.png?raw=true",
+              instagram: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/Instagram.webp?raw=true",
+              tumblr: "https://raw.githubusercontent.com/IconCanyon/Icon-canyon/505dd48ae8a71127f0b5551e6fc9fea903bed347/icon/tumblr.svg",
+              skype: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/skype.png?raw=true",
+              viber: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/viber.webp?raw=true",
+              wechat: "https://github.com/IconCanyon/Icon-canyon/blob/main/icon/wechat.webp?raw=true"
             };
             
             return `
