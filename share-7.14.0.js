@@ -184,13 +184,14 @@
           padding: 10px !important;
           font-size: 14px !important;
           resize: none !important;
-          border: solid 1px #ccc !important;
+          border: solid 1px #3642531f !important;
           border-radius: 5px !important;
           font-family: 'Cairo', sans-serif;
           line-height: 1.4 !important;
           outline-color: #3382ff !important;
-          direction: ${textDirection} !important;
-          text-align: ${textAlign} !important;
+          direction: rtl !important;
+          text-align: right !important;
+          background: #5e6e800f;
         }
         
         .share-textarea::placeholder {
@@ -307,11 +308,11 @@
         @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: scale(0);
           }
           to {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1);
           }
         }
         
@@ -457,4 +458,3 @@
 
   window.Share = { save, shareMultiple, loadAllData };
 })();
-
