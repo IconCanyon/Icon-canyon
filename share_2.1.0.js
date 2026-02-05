@@ -225,7 +225,7 @@
         
         .textarea-container {
           position: relative;
-          margin-bottom: 10px !important;
+          margin-bottom: 18px !important;
         }
         
         .share-textarea {
@@ -270,7 +270,6 @@
           border-radius: 50%;
           background-color: #ffffff;
           border: 1px solid #e0e0e0;
-          cursor: pointer;
           transition: all 0.2s ease;
         }
         
@@ -457,7 +456,7 @@
             <input type="file" id="sharefile" style="display: none;">
           </div>
         </div>
-        <div class="file-info">${direction === "left" ? "Select a file to share with your message" : "اختر ملفاً لمشاركته مع رسالتك"}</div>
+        <!-- <div class="file-info">${direction === "left" ? "Select a file to share with your message" : "اختر ملفاً لمشاركته مع رسالتك"}</div> -->
 
         <div class="sites-container">
           ${sitesToShow.map(site => {
