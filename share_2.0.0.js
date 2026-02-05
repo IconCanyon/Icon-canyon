@@ -33,7 +33,11 @@
     facebook: d => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(d.url||"")}`,
     x: d => `https://twitter.com/intent/tweet?text=${encodeURIComponent(d.customText||d.text||"")}&url=${encodeURIComponent(d.url||"")}`,
     linkedin: d => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(d.url||"")}`,
-    email: d => `mailto:${d.email||""}?subject=Share&body=${encodeURIComponent(d.customText||d.text||d.url||"")}`,
+    email: d => {
+      const subject = "Shared File & Message";
+      const body = encodeURIComponent((d.customText || d.text || "") + (d.url ? "\n\n" + d.url : ""));
+      return `mailto:${d.email||""}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    },
     sms: d => {
       const msg = encodeURIComponent(d.customText || d.text || d.url || "");
       return `sms:?&body=${msg}`;
@@ -44,7 +48,6 @@
     
     // المواقع الإضافية الخمسة
     instagram: d => {
-      // Instagram doesn't have direct sharing API, so we open app or use web URL
       const text = encodeURIComponent(d.customText || d.text || "");
       const url = encodeURIComponent(d.url || "");
       const fullText = url ? `${text} ${url}`.trim() : text;
@@ -54,7 +57,6 @@
     skype: d => `https://web.skype.com/share?url=${encodeURIComponent(d.url||"")}&text=${encodeURIComponent(d.customText||d.text||"")}`,
     viber: d => `viber://forward?text=${encodeURIComponent((d.customText||d.text||"") + " " + (d.url||""))}`,
     wechat: d => {
-      // WeChat doesn't have direct web sharing, so we provide alternative
       const text = encodeURIComponent((d.customText || d.text || "") + " " + (d.url || ""));
       return `weixin://dl/moments?text=${text}`;
     }
@@ -102,13 +104,37 @@
     };
   }
 
-  function shareMultiple(sites, customText){
+  function shareMultiple(sites, customText, fileData = null){
     const data = loadShareData(); // استخدام بيانات المشاركة فقط
     if(customText) data.customText = customText;
+    
     sites.forEach(site => {
       const fn = providers[site.toLowerCase()];
-      if(fn) window.open(fn(data), "_blank");
+      if(fn) {
+        const shareUrl = fn(data);
+        
+        // إذا كان الملف مرفقًا وبريد إلكتروني، استخدام طريقة مختلفة
+        if (site === 'email' && fileData) {
+          shareWithFile(shareUrl, fileData, customText || data.text || "");
+        } else {
+          window.open(shareUrl, "_blank");
+        }
+      }
     });
+  }
+
+  // دالة لمشاركة الملف عبر البريد الإلكتروني
+  function shareWithFile(emailUrl, fileData, text) {
+    // إنشاء رابط بريد إلكتروني مع النص
+    const emailBody = encodeURIComponent(text + "\n\n" + "File attached: " + fileData.name);
+    const mailtoLink = emailUrl.split('?')[0] + `?subject=Shared File & Message&body=${emailBody}`;
+    
+    // فتح البريد الإلكتروني
+    window.open(mailtoLink, "_blank");
+    
+    // ملاحظة: لا يمكن رفع الملفات تلقائيًا عبر mailto:
+    // المستخدم سيحتاج إلى رفع الملف يدويًا في عميل البريد
+    alert("ملاحظة: سيتم فتح عميل البريد الإلكتروني. يرجى رفع الملف يدويًا في نافذة البريد الجديدة.");
   }
 
   // ===================== Get Allowed Sites =====================
@@ -146,6 +172,10 @@
       sitesToShow = allowedSites;
     }
 
+    // متغير لتخزين بيانات الملف المرفق
+    let attachedFile = null;
+    let attachedFileName = "";
+
     const overlay = document.createElement("div");
     
     // الحصول على النصوص المخصصة من البيانات
@@ -180,7 +210,7 @@
           background-color: #fff !important;
           padding: 20px !important;
           border-radius: 10px !important;
-          width: 320px !important;
+          width: 340px !important;
           box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
           text-align: center !important;
           position: relative !important;
@@ -193,15 +223,20 @@
           margin-top: 50px !important;
         }
         
-        .share-textarea {
-          width: 100% !important;
-          height: 80px !important;
+        .textarea-container {
+          position: relative;
           margin-bottom: 10px !important;
-          padding: 10px !important;
+        }
+        
+        .share-textarea {
+          display: block;
+          width: 100% !important;
+          height: 100px !important;
+          padding: 12px !important;
           font-size: 14px !important;
           resize: none !important;
           border: solid 1px #3642531f !important;
-          border-radius: 5px !important;
+          border-radius: 8px !important;
           font-family: 'Cairo', sans-serif;
           line-height: 1.4 !important;
           outline-color: #3382ff !important;
@@ -214,6 +249,68 @@
           color: #999 !important;
           direction: ${textDirection} !important;
           text-align: ${textAlign} !important;
+        }
+        
+        .file-attachment-area {
+          position: absolute;
+          left: 8px;
+          bottom: 8px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          direction: ltr;
+        }
+        
+        .file-attach-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: #ffffff;
+          border: 1px solid #e0e0e0;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        
+        .file-attach-btn:hover {
+          background-color: #eaf1ff;
+          border-color: #3382ff;
+        }
+        
+        .file-attach-btn:hover svg {
+          color: rgb(2, 120, 255);
+        }
+        
+        .file-attach-btn svg {
+          height: 20px;
+          width: 20px;
+          color: #666;
+          transition: color 0.2s ease;
+        }
+        
+        .file-name-display {
+          font-size: 12px;
+          color: #666;
+          max-width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding: 4px 8px;
+          background: #f5f5f5;
+          border-radius: 12px;
+          display: none;
+        }
+        
+        .remove-file-btn {
+          background: none;
+          border: none;
+          color: #ff4444;
+          font-size: 14px;
+          cursor: pointer;
+          padding: 2px 6px;
+          display: none;
         }
         
         .sites-container {
@@ -288,7 +385,7 @@
         }
         
         .share-btn {
-          padding: 5px 18px !important;
+          padding: 8px 24px !important;
           border-radius: 25px !important;
           border: none !important;
           color: white !important;
@@ -305,7 +402,7 @@
         }
         
         .close-btn {
-          padding: 5px 18px !important;
+          padding: 8px 24px !important;
           border-radius: 25px !important;
           border: none !important;
           color: rgb(0, 0, 0) !important;
@@ -319,6 +416,14 @@
         
         .close-btn:hover {
           background: #c8d6ff !important;
+        }
+        
+        .file-info {
+          font-size: 11px;
+          color: #666;
+          margin-top: 5px;
+          text-align: center;
+          direction: ${textDirection} !important;
         }
         
         @keyframes fadeIn {
@@ -338,8 +443,22 @@
       </style>
       
       <div class="share-box">
-        <textarea class="share-textarea" name="textarea" placeholder="${placeholderText}">${initialText}</textarea>
-        
+        <div class="textarea-container">
+          <textarea class="share-textarea" name="textarea" placeholder="${placeholderText}">${initialText}</textarea>
+          <div class="file-attachment-area">
+            <label for="sharefile" class="file-attach-btn Wave-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 176v160M336 256H176"/>
+              </svg>
+            </label>
+            <span class="file-name-display" id="fileNameDisplay"></span>
+            <button class="remove-file-btn" id="removeFileBtn">×</button>
+            <input type="file" id="sharefile" style="display: none;">
+          </div>
+        </div>
+        <div class="file-info">${direction === "left" ? "Select a file to share with your message" : "اختر ملفاً لمشاركته مع رسالتك"}</div>
+
         <div class="sites-container">
           ${sitesToShow.map(site => {
             const isAllowed = allowedSites.includes(site);
@@ -390,7 +509,6 @@
         
         const textarea = overlay.querySelector(".share-textarea");
         // تم إزالة التركيز التلقائي
-        // textarea.focus(); 
         
         // تعيين اتجاه النص حسب الإعدادات
         textarea.style.direction = textDirection;
@@ -410,18 +528,84 @@
       }, 300);
     }
 
-    // إضافة event listeners للأزرار
+    // دالة تحديث عرض اسم الملف
+    function updateFileNameDisplay() {
+      const fileNameDisplay = overlay.querySelector("#fileNameDisplay");
+      const removeFileBtn = overlay.querySelector("#removeFileBtn");
+      
+      if (attachedFileName) {
+        fileNameDisplay.textContent = attachedFileName;
+        fileNameDisplay.style.display = "inline-block";
+        removeFileBtn.style.display = "inline-block";
+      } else {
+        fileNameDisplay.style.display = "none";
+        removeFileBtn.style.display = "none";
+      }
+    }
+
+    // إضافة event listeners للأزرار والعناصر
     const sendBtn = overlay.querySelector(".share-btn");
     const closeBtn = overlay.querySelector(".close-btn");
+    const fileInput = overlay.querySelector("#sharefile");
+    const removeFileBtn = overlay.querySelector("#removeFileBtn");
+    
+    // حدث اختيار ملف
+    fileInput.addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        // التحقق من حجم الملف (حد أقصى 10MB)
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        if (file.size > maxSize) {
+          alert(direction === "left" ? "File size is too large. Maximum size is 10MB." : "حجم الملف كبير جداً. الحد الأقصى هو 10 ميجابايت.");
+          fileInput.value = "";
+          return;
+        }
+        
+        attachedFile = file;
+        attachedFileName = file.name;
+        updateFileNameDisplay();
+        
+        // إضافة نص حول الملف في خانة النص إذا كانت فارغة
+        const textarea = overlay.querySelector(".share-textarea");
+        if (!textarea.value.trim()) {
+          const fileMessage = direction === "left" 
+            ? `Sharing file: ${file.name}\n\n` 
+            : `مشاركة الملف: ${file.name}\n\n`;
+          textarea.value = fileMessage;
+        }
+      }
+    });
+    
+    // حدث إزالة الملف
+    removeFileBtn.addEventListener("click", function() {
+      attachedFile = null;
+      attachedFileName = "";
+      fileInput.value = "";
+      updateFileNameDisplay();
+    });
     
     sendBtn.addEventListener("click", () => {
       const customText = overlay.querySelector(".share-textarea").value.trim();
       const selectedRadio = overlay.querySelector(".site-radio:checked");
       if(!selectedRadio){
-        alert("يرجى اختيار منصة مفعّلة للمشاركة");
+        alert(direction === "left" ? "Please select an enabled platform to share" : "يرجى اختيار منصة مفعّلة للمشاركة");
         return;
       }
-      shareMultiple([selectedRadio.value], customText);
+      
+      const selectedSite = selectedRadio.value;
+      
+      // تحذير إذا كان الملف مرفقاً لكن المنصة ليست بريد إلكتروني
+      if (attachedFile && selectedSite !== 'email') {
+        const confirmMsg = direction === "left" 
+          ? "Files can only be shared via Email. The file will be ignored for other platforms. Continue?"
+          : "يمكن مشاركة الملفات عبر البريد الإلكتروني فقط. سيتم تجاهل الملف للمنصات الأخرى. المتابعة؟";
+        
+        if (!confirm(confirmMsg)) {
+          return;
+        }
+      }
+      
+      shareMultiple([selectedSite], customText, attachedFile);
       hidePopup();
     });
     
@@ -462,6 +646,7 @@
     document.addEventListener("keydown", escKeyHandler);
 
     showPopup();
+    updateFileNameDisplay(); // تهيئة عرض اسم الملف
   }
 
   // مستمع الأحداث المحدث
