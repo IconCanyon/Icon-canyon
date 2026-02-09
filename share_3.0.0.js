@@ -62,6 +62,9 @@
     }
   };
 
+  // قائمة المنصات التي تدعم مشاركة الملفات
+  const fileSharingSupported = ['email']; // البريد الإلكتروني فقط يدعم الملفات
+
   const KEY = "share_user_data";
   const KEY_CONFIG = "share_config_data"; // مفتاح منفصل للإعدادات
 
@@ -289,6 +292,21 @@
           transition: color 0.2s ease;
         }
         
+        .file-attach-btn.disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+        
+        .file-attach-btn.disabled:hover {
+          background-color: #ffffff;
+          border-color: #e0e0e0;
+        }
+        
+        .file-attach-btn.disabled:hover svg {
+          color: #666;
+        }
+        
         .file-name-display {
           font-size: 12px;
           color: #666;
@@ -321,6 +339,8 @@
           display: flex;
           flex-wrap: wrap !important;
           gap: 2px !important;
+          margin: 0 auto;
+          width: 280px;
         }
         
         .sites-container::-webkit-scrollbar {
@@ -445,7 +465,7 @@
         <div class="textarea-container">
           <textarea class="share-textarea" name="textarea" placeholder="${placeholderText}">${initialText}</textarea>
           <div class="file-attachment-area">
-            <label for="sharefile" class="file-attach-btn Wave-center">
+            <label id="fileAttachLabel" class="file-attach-btn Wave-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                 <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 176v160M336 256H176"/>
@@ -542,11 +562,45 @@
       }
     }
 
+    // دالة التحقق مما إذا كانت المنصة المحددة تدعم الملفات
+    function isFileSharingSupported(platform) {
+      return fileSharingSupported.includes(platform.toLowerCase());
+    }
+
+    // دالة تحديث حالة زر إرفاق الملف بناءً على المنصة المحددة
+    function updateFileAttachButtonState() {
+      const selectedRadio = overlay.querySelector(".site-radio:checked");
+      const fileAttachLabel = overlay.querySelector("#fileAttachLabel");
+      const fileInput = overlay.querySelector("#sharefile");
+      
+      if (selectedRadio && isFileSharingSupported(selectedRadio.value)) {
+        // المنصة تدعم الملفات
+        fileAttachLabel.classList.remove("disabled");
+        fileInput.disabled = false;
+        fileAttachLabel.title = direction === "left" ? "Attach file" : "إرفاق ملف";
+      } else {
+        // المنصة لا تدعم الملفات
+        fileAttachLabel.classList.add("disabled");
+        fileInput.disabled = true;
+        fileAttachLabel.title = direction === "left" ? "File sharing not supported for this platform" : "مشاركة الملفات غير مدعومة لهذه المنصة";
+      }
+    }
+
+    // دالة لإظهار رسالة تحذير عند محاولة إرفاق ملف لمنصة غير مدعومة
+    function showFileWarning(platformName) {
+      const warningMsg = direction === "left" 
+        ? `File sharing is not supported for ${platformName}. You can only share files via Email.`
+        : `مشاركة الملفات غير مدعومة لـ ${platformName}. يمكنك مشاركة الملفات عبر البريد الإلكتروني فقط.`;
+      
+      alert(warningMsg);
+    }
+
     // إضافة event listeners للأزرار والعناصر
     const sendBtn = overlay.querySelector(".share-btn");
     const closeBtn = overlay.querySelector(".close-btn");
     const fileInput = overlay.querySelector("#sharefile");
     const removeFileBtn = overlay.querySelector("#removeFileBtn");
+    const fileAttachLabel = overlay.querySelector("#fileAttachLabel");
     
     // حدث اختيار ملف
     fileInput.addEventListener("change", function(e) {
@@ -583,6 +637,31 @@
       updateFileNameDisplay();
     });
     
+    // حدث النقر على زر إرفاق الملف
+    fileAttachLabel.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // التحقق مما إذا كانت المنصة المحددة تدعم الملفات
+      const selectedRadio = overlay.querySelector(".site-radio:checked");
+      if (!selectedRadio) {
+        const noSelectionMsg = direction === "left" 
+          ? "Please select a platform first to see if it supports file sharing"
+          : "يرجى اختيار منصة أولاً لمعرفة ما إذا كانت تدعم مشاركة الملفات";
+        alert(noSelectionMsg);
+        return;
+      }
+      
+      const selectedPlatform = selectedRadio.value;
+      if (!isFileSharingSupported(selectedPlatform)) {
+        showFileWarning(selectedPlatform);
+        return;
+      }
+      
+      // إذا كانت المنصة تدعم الملفات، فتح مربع اختيار الملف
+      fileInput.click();
+    });
+    
     sendBtn.addEventListener("click", () => {
       const customText = overlay.querySelector(".share-textarea").value.trim();
       const selectedRadio = overlay.querySelector(".site-radio:checked");
@@ -594,7 +673,7 @@
       const selectedSite = selectedRadio.value;
       
       // تحذير إذا كان الملف مرفقاً لكن المنصة ليست بريد إلكتروني
-      if (attachedFile && selectedSite !== 'email') {
+      if (attachedFile && !isFileSharingSupported(selectedSite)) {
         const confirmMsg = direction === "left" 
           ? "Files can only be shared via Email. The file will be ignored for other platforms. Continue?"
           : "يمكن مشاركة الملفات عبر البريد الإلكتروني فقط. سيتم تجاهل الملف للمنصات الأخرى. المتابعة؟";
@@ -629,6 +708,9 @@
                 if (otherRadio) otherRadio.checked = false;
               }
             });
+            
+            // تحديث حالة زر إرفاق الملف عند تغيير المنصة المحددة
+            updateFileAttachButtonState();
           }
         }
       });
@@ -646,6 +728,7 @@
 
     showPopup();
     updateFileNameDisplay(); // تهيئة عرض اسم الملف
+    updateFileAttachButtonState(); // تحديث حالة زر إرفاق الملف عند الظهور الأولي
   }
 
   // مستمع الأحداث المحدث
