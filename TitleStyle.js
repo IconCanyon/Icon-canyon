@@ -173,7 +173,7 @@
     }
 
     // ===========================
-    // تحديث عند تغيير title (مهم لحالة الإنترنت)
+    // تحديث عند تغيير title
     // ===========================
     function updateTooltipText(el) {
         if (!el) return;
@@ -181,24 +181,20 @@
         let newText = el.getAttribute('title');
         if (!newText) return;
 
-        // حفظ النص الجديد
         el.dataset.title = newText;
 
-        // ترجمة فورية
         const translated = translateIfNeeded(newText);
 
-        // إذا العنصر الحالي معروض
         if (el === currentElement) {
             tooltip.childNodes[0].textContent = translated;
             positionTooltip(el);
         }
 
-        // إعادة إزالة title لمنع الافتراضي
         el.removeAttribute('title');
     }
 
     // ===========================
-    // إخفاء
+    // إخفاء Tooltip
     // ===========================
     function hideTooltip() {
         if (!currentElement) return;
@@ -218,6 +214,19 @@
 
             const titleObserver = new MutationObserver(() => updateTooltipText(el));
             titleObserver.observe(el, { attributes: true, attributeFilter: ['title'] });
+
+            // مراقبة اختفاء العنصر من DOM
+            const removalObserver = new MutationObserver(mutations => {
+                mutations.forEach(m => {
+                    m.removedNodes.forEach(removed => {
+                        if (removed === el || removed.contains(el)) {
+                            if (currentElement === el) hideTooltip();
+                            removalObserver.disconnect();
+                        }
+                    });
+                });
+            });
+            removalObserver.observe(document.body, { childList: true, subtree: true });
 
             el.__tooltip_initialized = true;
         }
