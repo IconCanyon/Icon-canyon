@@ -75,6 +75,13 @@
             const scrollX = window.scrollX;
             const scrollY = window.scrollY;
 
+            // ضع tooltip بشكل مبدئي بالقرب من العنصر
+            tooltip.style.top = '0px';
+            tooltip.style.left = '0px';
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.display = 'block';
+
+            // إعادة حساب الحجم بعد وضع النص
             const tRect = tooltip.getBoundingClientRect();
 
             let top, left, direction;
@@ -104,42 +111,50 @@
                 left = rect.left + scrollX - tRect.width - spacing;
             }
 
-            left = Math.max(scrollX + margin, Math.min(left, scrollX + window.innerWidth - tRect.width - margin));
-            top = Math.max(scrollY + margin, Math.min(top, scrollY + window.innerHeight - tRect.height - margin));
+            // منع خروج الـ tooltip خارج الشاشة
+            const newRect = tooltip.getBoundingClientRect();
+            left = Math.max(scrollX + margin, Math.min(left, scrollX + window.innerWidth - newRect.width - margin));
+            top = Math.max(scrollY + margin, Math.min(top, scrollY + window.innerHeight - newRect.height - margin));
 
             tooltip.style.top = top + 'px';
             tooltip.style.left = left + 'px';
+            tooltip.style.visibility = 'visible';
 
             const arrowSize = 6;
             arrow.style.border = 'none';
 
+            // ======== السهم ملتصق دائمًا بالـ tooltip ========
             if (direction === 'top') {
-                arrow.style.left = (rect.left + rect.width/2 + scrollX - left - arrowSize) + 'px';
-                arrow.style.top = tRect.height + 'px';
+                arrow.style.left = Math.min(Math.max(rect.left + rect.width/2 + scrollX - left - arrowSize, arrowSize),
+                    newRect.width - arrowSize*2) + 'px';
+                arrow.style.top = (newRect.height - 1) + 'px';
                 arrow.style.borderLeft = arrowSize + 'px solid transparent';
                 arrow.style.borderRight = arrowSize + 'px solid transparent';
                 arrow.style.borderTop = arrowSize + 'px solid #4b5869';
             }
 
             if (direction === 'bottom') {
-                arrow.style.left = (rect.left + rect.width/2 + scrollX - left - arrowSize) + 'px';
-                arrow.style.top = -arrowSize + 'px';
+                arrow.style.left = Math.min(Math.max(rect.left + rect.width/2 + scrollX - left - arrowSize, arrowSize),
+                    newRect.width - arrowSize*2) + 'px';
+                arrow.style.top = (-arrowSize + 1) + 'px';
                 arrow.style.borderLeft = arrowSize + 'px solid transparent';
                 arrow.style.borderRight = arrowSize + 'px solid transparent';
                 arrow.style.borderBottom = arrowSize + 'px solid #4b5869';
             }
 
             if (direction === 'right') {
-                arrow.style.top = (rect.top + rect.height/2 + scrollY - top - arrowSize) + 'px';
-                arrow.style.left = -arrowSize + 'px';
+                arrow.style.top = Math.min(Math.max(rect.top + rect.height/2 + scrollY - top - arrowSize, arrowSize),
+                    newRect.height - arrowSize*2) + 'px';
+                arrow.style.left = (-arrowSize + 1) + 'px';
                 arrow.style.borderTop = arrowSize + 'px solid transparent';
                 arrow.style.borderBottom = arrowSize + 'px solid transparent';
                 arrow.style.borderRight = arrowSize + 'px solid #4b5869';
             }
 
             if (direction === 'left') {
-                arrow.style.top = (rect.top + rect.height/2 + scrollY - top - arrowSize) + 'px';
-                arrow.style.left = tRect.width + 'px';
+                arrow.style.top = Math.min(Math.max(rect.top + rect.height/2 + scrollY - top - arrowSize, arrowSize),
+                    newRect.height - arrowSize*2) + 'px';
+                arrow.style.left = (newRect.width - 1) + 'px';
                 arrow.style.borderTop = arrowSize + 'px solid transparent';
                 arrow.style.borderBottom = arrowSize + 'px solid transparent';
                 arrow.style.borderLeft = arrowSize + 'px solid #4b5869';
@@ -169,6 +184,10 @@
             el.removeAttribute('title');
 
             tooltip.style.opacity = 1;
+
+            // إعادة حساب الحجم قبل التموضع
+            tooltip.offsetHeight;
+
             positionTooltip(e);
         }
 
@@ -183,7 +202,6 @@
         function handleTouch(e) {
             showTooltip(e);
 
-            // إعادة ضبط المؤقت
             if (touchTimer) clearTimeout(touchTimer);
 
             touchTimer = setTimeout(() => {
@@ -197,12 +215,9 @@
         function enableTooltipLazy(el) {
             if (el.__tooltip_initialized) return;
 
-            // للماوس
             el.addEventListener('mouseenter', showTooltip);
             el.addEventListener('mouseleave', hideTooltip);
             el.addEventListener('mousemove', positionTooltip);
-
-            // للمس
             el.addEventListener('touchstart', handleTouch, { passive: true });
 
             el.__tooltip_initialized = true;
