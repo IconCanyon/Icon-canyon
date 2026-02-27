@@ -13,7 +13,6 @@
         const tooltip = document.createElement('div');
         tooltip.id = 'custom-tooltip';
 
-        // منع الترجمة
         tooltip.classList.add('no-translate');
         tooltip.setAttribute('data-no-translate', 'true');
 
@@ -31,7 +30,7 @@
             wordWrap: 'break-word',
             opacity: 0,
             transition: 'opacity 0.2s',
-            fontFamily: 'Arial',
+            fontFamily: 'system-ui',
         });
 
         // السهم
@@ -47,6 +46,7 @@
         document.body.appendChild(tooltip);
 
         let currentElement = null;
+        let touchTimer = null;
 
         // ===========================
         // ترجمة النص
@@ -110,7 +110,6 @@
             tooltip.style.top = top + 'px';
             tooltip.style.left = left + 'px';
 
-            // السهم
             const arrowSize = 6;
             arrow.style.border = 'none';
 
@@ -179,14 +178,32 @@
         }
 
         // ===========================
+        // دعم اللمس
+        // ===========================
+        function handleTouch(e) {
+            showTooltip(e);
+
+            // إعادة ضبط المؤقت
+            if (touchTimer) clearTimeout(touchTimer);
+
+            touchTimer = setTimeout(() => {
+                hideTooltip();
+            }, 1700);
+        }
+
+        // ===========================
         // التفعيل
         // ===========================
         function enableTooltipLazy(el) {
             if (el.__tooltip_initialized) return;
 
+            // للماوس
             el.addEventListener('mouseenter', showTooltip);
             el.addEventListener('mouseleave', hideTooltip);
             el.addEventListener('mousemove', positionTooltip);
+
+            // للمس
+            el.addEventListener('touchstart', handleTouch, { passive: true });
 
             el.__tooltip_initialized = true;
         }
