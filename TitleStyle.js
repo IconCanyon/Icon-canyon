@@ -39,6 +39,10 @@
     document.body.appendChild(tooltip);
 
     let currentElement = null;
+    
+    // نص الـ tooltip (نضيفه مرة واحدة فقط)
+    const textNode = document.createTextNode('');
+    tooltip.insertBefore(textNode, arrow);
 
     // ===========================
     // ترجمة النص إذا كانت دالة translateText موجودة
@@ -116,24 +120,21 @@
             arrow.style.borderRight = arrowSize + 'px solid transparent';
             arrow.style.borderTop = arrowSize + 'px solid #4b5869';
         }
-
-        if (direction === 'bottom') {
+        else if (direction === 'bottom') {
             arrow.style.left = (rect.left + rect.width/2 + scrollX - left - arrowSize) + 'px';
             arrow.style.top = -arrowSize + 'px';
             arrow.style.borderLeft = arrowSize + 'px solid transparent';
             arrow.style.borderRight = arrowSize + 'px solid transparent';
             arrow.style.borderBottom = arrowSize + 'px solid #4b5869';
         }
-
-        if (direction === 'right') {
+        else if (direction === 'right') {
             arrow.style.top = (rect.top + rect.height/2 + scrollY - top - arrowSize) + 'px';
             arrow.style.left = -arrowSize + 'px';
             arrow.style.borderTop = arrowSize + 'px solid transparent';
             arrow.style.borderBottom = arrowSize + 'px solid transparent';
             arrow.style.borderRight = arrowSize + 'px solid #4b5869';
         }
-
-        if (direction === 'left') {
+        else if (direction === 'left') {
             arrow.style.top = (rect.top + rect.height/2 + scrollY - top - arrowSize) + 'px';
             arrow.style.left = tRect.width + 'px';
             arrow.style.borderTop = arrowSize + 'px solid transparent';
@@ -156,11 +157,8 @@
         // ترجمة النص قبل العرض
         text = translateIfNeeded(text);
 
-        if (tooltip.firstChild.nodeType === 3) {
-            tooltip.firstChild.textContent = text;
-        } else {
-            tooltip.insertBefore(document.createTextNode(text), arrow);
-        }
+        // تحديث النص
+        textNode.textContent = text;
 
         // حفظ النص الأصلي
         el.dataset.title = el.getAttribute('title') || el.dataset.title || text;
@@ -186,7 +184,7 @@
         const translated = translateIfNeeded(newText);
 
         if (el === currentElement) {
-            tooltip.childNodes[0].textContent = translated;
+            textNode.textContent = translated;
             positionTooltip(el);
         }
 
