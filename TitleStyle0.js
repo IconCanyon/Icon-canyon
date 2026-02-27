@@ -31,6 +31,7 @@
             wordWrap: 'break-word',
             opacity: 0,
             transition: 'opacity 0.2s',
+            fontFamily: 'Arial',
         });
 
         // السهم
